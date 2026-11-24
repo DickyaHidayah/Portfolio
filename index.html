@@ -1,504 +1,1521 @@
-<!DOCTYPE html>
-<html lang="en">
+<!doctype html>
+<html lang="id">
 <head>
-	<meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="Start your development with Steller landing page.">
-    <meta name="author" content="Devcrud">
-    <title>Dickya hidayah portfolio</title>
-//Bootstrap
-    <link rel="stylesheet" href="assets/vendors/themify-icons/css/themify-icons.css">
-    <!-- Bootstrap + Steller main styles -->
-	<link rel="stylesheet" href="assets/css/HIDAYAH.css">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Dickya Hidayah Putra — Portofolio Marketing & Kreatif</title>
+<meta name="description" content="Portofolio Dickya Hidayah Putra: Manajer Pemasaran multi-channel & performance marketing, dengan fondasi web, UI/UX, dan 3D.">
+<meta name="theme-color" content="#060D1C">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<script>document.documentElement.classList.add('js')</script>
+<style>
+/* ============================================================
+   PALET 60 : 30 : 10  (masing-masing berupa gradasi)
+   60% — Dasar  : Midnight Navy   (latar, permukaan besar)
+   30% — Pendukung: Cobalt Blue   (panel, garis, elemen interaktif)
+   10% — Aksen  : Amber Coral     (CTA, sorotan, detail kecil)
+   ============================================================ */
+:root{
+  --base-1:#050B18; --base-2:#0A1530; --base-3:#102349;
+  --sup-1:#1E4F9C;  --sup-2:#3478D4; --sup-3:#7FB4F2;
+  --acc-1:#FFC987;  --acc-2:#FF9A62; --acc-3:#FF6F55;
+
+  --g-base:linear-gradient(160deg,var(--base-1),var(--base-2) 55%,var(--base-3));
+  --g-sup:linear-gradient(135deg,var(--sup-1),var(--sup-2) 55%,var(--sup-3));
+  --g-acc:linear-gradient(120deg,var(--acc-1),var(--acc-2) 55%,var(--acc-3));
+
+  --ink:#F2F6FD; --ink-2:#C6D1E6; --ink-3:#9DACC8;
+  --line:rgba(127,180,242,.16); --line-2:rgba(127,180,242,.3);
+  --panel:rgba(16,35,73,.55);
+  --serif:'Plus Jakarta Sans',system-ui,sans-serif; --sans:'Plus Jakarta Sans',system-ui,sans-serif;
+  --ease:cubic-bezier(.2,.8,.2,1);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{font-family:var(--sans);font-size:17px;line-height:1.7;color:var(--ink);background:var(--base-1);overflow-x:hidden;-webkit-font-smoothing:antialiased}
+img,video{max-width:100%;display:block}
+a{color:inherit;text-decoration:none}
+button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
+::selection{background:var(--acc-2);color:#1a0b05}
+:focus-visible{outline:2px solid var(--acc-1);outline-offset:3px;border-radius:6px}
+
+/* latar: gradasi + cahaya melayang + grain */
+.bg{position:fixed;inset:0;z-index:-2;background:var(--g-base)}
+.bg i{position:absolute;border-radius:50%;filter:blur(90px);opacity:.5;will-change:transform}
+.bg i:nth-child(1){width:46vw;height:46vw;left:-12vw;top:-10vw;background:var(--sup-1);animation:drift 26s ease-in-out infinite alternate}
+.bg i:nth-child(2){width:34vw;height:34vw;right:-8vw;top:38vh;background:var(--sup-2);opacity:.28;animation:drift 32s ease-in-out infinite alternate-reverse}
+.bg i:nth-child(3){width:22vw;height:22vw;left:38vw;bottom:-8vw;background:var(--acc-3);opacity:.16;animation:drift 38s ease-in-out infinite alternate}
+@keyframes drift{to{transform:translate3d(6vw,5vh,0) scale(1.15)}}
+.grain{position:fixed;inset:0;z-index:-1;pointer-events:none;opacity:.07;mix-blend-mode:overlay;
+ background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='200' height='200'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2' stitchTiles='stitch'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>")}
+.progress{position:fixed;left:0;top:0;height:3px;width:100%;transform-origin:0 50%;transform:scaleX(0);background:var(--g-acc);z-index:90}
+
+.wrap{width:min(1180px,100% - 48px);margin-inline:auto}
+section{padding:clamp(72px,10vw,132px) 0;position:relative}
+.eyebrow{display:inline-flex;align-items:center;gap:12px;font-size:12.5px;letter-spacing:.22em;text-transform:uppercase;color:var(--sup-3);font-weight:600}
+.eyebrow::before{content:"";width:34px;height:1px;background:var(--g-acc)}
+h2.title{font-family:var(--serif);font-weight:800;font-size:clamp(30px,4.4vw,54px);line-height:1.1;letter-spacing:-.03em;margin:16px 0 18px}
+h2.title em{font-style:normal;background:var(--g-acc);-webkit-background-clip:text;background-clip:text;color:transparent;padding-right:.06em}
+.lead{color:var(--ink-2);max-width:62ch}
+
+/* reveal */
+.js .rv{opacity:0;transform:translateY(26px);transition:opacity .9s var(--ease),transform .9s var(--ease);transition-delay:var(--d,0s)}
+.js .rv.in{opacity:1;transform:none}
+
+/* header */
+header.nav{position:fixed;inset:0 0 auto 0;z-index:80;transition:background .4s,backdrop-filter .4s,border-color .4s;border-bottom:1px solid transparent}
+header.nav.stuck{background:rgba(6,13,28,.72);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-color:var(--line)}
+.nav-in{display:flex;align-items:center;justify-content:space-between;height:74px}
+.logo{display:flex;align-items:center;gap:12px;font-family:var(--serif);font-size:18px;font-weight:700;letter-spacing:-.01em}
+.logo b{display:grid;place-items:center;width:38px;height:38px;border-radius:12px;background:var(--g-sup);font-weight:600;font-size:15px;box-shadow:0 6px 24px -8px var(--sup-2)}
+.nav-links{display:flex;gap:6px}
+.nav-links a{padding:9px 15px;border-radius:99px;font-size:14.5px;color:var(--ink-2);transition:.25s}
+.nav-links a:hover{color:var(--ink);background:rgba(127,180,242,.12)}
+.nav-cta{padding:10px 20px;border-radius:99px;font-size:14.5px;font-weight:600;background:var(--g-acc);color:#2a1206;transition:transform .3s var(--ease),box-shadow .3s}
+.nav-cta:hover{transform:translateY(-2px);box-shadow:0 10px 30px -10px var(--acc-3)}
+.burger{display:none;width:44px;height:44px;border-radius:12px;border:1px solid var(--line-2)}
+.burger span{display:block;width:18px;height:2px;margin:4px auto;background:var(--ink);transition:.3s}
+
+/* hero */
+.hero{min-height:100svh;display:grid;align-items:center;padding:120px 0 70px}
+.hero-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:24px;align-items:center}
+.kicker{display:inline-flex;gap:10px;align-items:center;padding:8px 16px 8px 10px;border:1px solid var(--line-2);border-radius:99px;font-size:13.5px;color:var(--ink-2);background:rgba(16,35,73,.4)}
+.kicker i{width:8px;height:8px;border-radius:50%;background:var(--g-acc);box-shadow:0 0 0 0 rgba(255,154,98,.6);animation:ping 2.4s infinite}
+@keyframes ping{70%{box-shadow:0 0 0 10px rgba(255,154,98,0)}100%{box-shadow:0 0 0 0 rgba(255,154,98,0)}}
+h1.name{font-family:var(--serif);font-weight:800;font-size:clamp(44px,7.4vw,98px);line-height:1;letter-spacing:-.04em;margin:26px 0 22px}
+h1.name .ln{display:block;overflow:hidden;padding-bottom:.2em;margin-bottom:-.1em}
+h1.name .ln>span{display:inline-block;transform:translateY(110%);animation:rise 1.2s var(--ease) forwards}
+h1.name .ln:nth-child(2)>span{animation-delay:.12s;font-weight:800;background:var(--g-acc);-webkit-background-clip:text;background-clip:text;color:transparent;padding-right:.08em}
+h1.name .ln:nth-child(3)>span{animation-delay:.24s}
+@keyframes rise{to{transform:none}}
+.role{font-size:clamp(17px,2vw,21px);color:var(--ink);font-weight:500;max-width:34ch}
+.role span{color:var(--sup-3)}
+.hero p.lead{margin-top:16px}
+.cta-row{display:flex;flex-wrap:wrap;gap:14px;margin-top:34px}
+.btn{display:inline-flex;align-items:center;gap:10px;padding:15px 26px;border-radius:99px;font-weight:600;font-size:15.5px;transition:transform .35s var(--ease),box-shadow .35s,background .3s}
+.btn.pri{background:var(--g-acc);color:#2a1206}
+.btn.pri:hover{transform:translateY(-3px);box-shadow:0 16px 36px -14px var(--acc-3)}
+.btn.ghost{border:1px solid var(--line-2);background:rgba(16,35,73,.35)}
+.btn.ghost:hover{background:rgba(52,120,212,.25);transform:translateY(-3px)}
+.btn svg{width:18px;height:18px}
+.stats{display:grid;grid-template-columns:repeat(4,auto);gap:12px 38px;margin-top:52px;justify-content:start}
+.stat b{display:block;font-family:var(--serif);font-weight:800;font-size:clamp(30px,3.6vw,44px);line-height:1;background:var(--g-sup);-webkit-background-clip:text;background-clip:text;color:transparent}
+.stat span{font-size:13px;color:var(--ink-3);letter-spacing:.04em}
+.hero-3d{position:relative;aspect-ratio:1/1;max-height:640px;width:100%}
+.hero-3d canvas{position:absolute;inset:0;width:100%;height:100%;display:block}
+.float-tag{position:absolute;padding:8px 15px;border-radius:99px;font-size:13px;font-weight:600;border:1px solid var(--line-2);background:rgba(10,21,48,.7);backdrop-filter:blur(8px);animation:bob 7s ease-in-out infinite;white-space:nowrap}
+.float-tag:nth-of-type(1){left:2%;top:16%}
+.float-tag:nth-of-type(2){right:0;top:30%;animation-delay:-2s}
+.float-tag:nth-of-type(3){left:6%;bottom:18%;animation-delay:-4s}
+.float-tag:nth-of-type(4){right:8%;bottom:10%;animation-delay:-1s;border-color:rgba(255,154,98,.5)}
+@keyframes bob{50%{transform:translateY(-12px)}}
+.scroll-hint{position:absolute;left:50%;bottom:26px;transform:translateX(-50%);font-size:12px;letter-spacing:.24em;text-transform:uppercase;color:var(--ink-3);display:flex;flex-direction:column;align-items:center;gap:10px}
+.scroll-hint i{width:1px;height:38px;background:linear-gradient(var(--sup-3),transparent);animation:line 2.2s infinite}
+@keyframes line{0%{transform:scaleY(0);transform-origin:top}50%{transform:scaleY(1);transform-origin:top}51%{transform-origin:bottom}100%{transform:scaleY(0);transform-origin:bottom}}
+
+/* disiplin (accordion) */
+.disc{padding:clamp(60px,8vw,104px) 0 clamp(10px,3vw,30px)}
+.disc-head{display:flex;justify-content:space-between;align-items:flex-end;gap:20px;flex-wrap:wrap;margin-bottom:34px}
+.hint{font-size:14px;color:var(--ink-3)}
+.disc-row{display:flex;gap:12px;height:390px}
+.dp{position:relative;flex:1 1 0;min-width:0;border-radius:24px;overflow:hidden;text-align:left;border:1px solid var(--line);background:var(--panel);transition:flex .8s var(--ease),border-color .4s,height .7s var(--ease);isolation:isolate;display:block}
+.dp::before{content:"";position:absolute;inset:0;z-index:-1;background:var(--bg);opacity:0;transition:opacity .6s}
+.dp.on::before{opacity:1}
+.dp.on{flex:5 1 0;border-color:var(--line-2)}
+.dp:not(.on):hover{border-color:var(--sup-3)}
+.dp .blob{position:absolute;width:280px;height:280px;border-radius:50%;right:-90px;bottom:-110px;background:var(--glow);filter:blur(56px);opacity:0;transition:opacity .8s;z-index:-1}
+.dp.on .blob{opacity:.6}
+.dp-ic{position:absolute;top:22px;left:50%;transform:translateX(-50%);width:50px;height:50px;border-radius:16px;display:grid;place-items:center;background:var(--g-sup);color:#fff;transition:left .7s var(--ease),transform .7s var(--ease)}
+.dp-ic svg{width:24px;height:24px}
+.dp.on .dp-ic{left:28px;transform:none;background:var(--g-acc);color:#2a1206}
+.dp-vert{position:absolute;left:50%;top:92px;transform:translateX(-50%);writing-mode:vertical-rl;font-weight:700;font-size:18px;white-space:nowrap;transition:opacity .3s;color:var(--ink)}
+.dp.on .dp-vert{opacity:0}
+.dp-no{position:absolute;right:20px;bottom:16px;font-weight:700;font-size:14px;letter-spacing:.08em;color:var(--sup-3)}
+.dp-open{position:absolute;left:28px;top:98px;width:min(380px,calc(100% - 56px));opacity:0;transform:translateX(24px);pointer-events:none;transition:opacity .35s,transform .6s var(--ease)}
+.dp.on .dp-open{opacity:1;transform:none;transition-delay:.28s}
+.dp-open h3{font-size:26px;font-weight:800;letter-spacing:-.02em;margin-bottom:8px;line-height:1.15}
+.dp-open p{font-size:16px;color:var(--ink);opacity:.92;margin-bottom:16px}
+@media(max-width:1020px){.disc-row{height:360px}.dp-open p{font-size:15px}}
+@media(max-width:760px){
+  .disc-row{flex-direction:column;height:auto;gap:10px}
+  .dp{flex:none!important;height:78px}
+  .dp.on{height:312px}
+  .dp-ic{top:14px;left:16px;transform:none;width:48px;height:48px}
+  .dp.on .dp-ic{left:16px}
+  .dp-vert{writing-mode:horizontal-tb;left:78px;top:25px;transform:none;font-size:17px}
+  .dp-open{left:18px;top:84px;width:calc(100% - 36px)}
+  .dp-no{top:28px;bottom:auto;right:18px}
+}
+
+/* diagram alur kerja */
+.flow{margin-top:54px}
+.flow-steps{list-style:none;display:grid;grid-template-columns:repeat(5,1fr)}
+.flow-steps li{position:relative;text-align:center;padding:0 8px}
+.flow-steps li:not(:last-child)::after{content:"";position:absolute;top:28px;left:calc(50% + 32px);width:calc(100% - 64px);height:4px;border-radius:4px;background:rgba(127,180,242,.2);transition:background .5s}
+.flow-steps li.done:not(:last-child)::after{background:var(--g-sup)}
+.flow-steps li.active:not(:last-child)::after{background:linear-gradient(90deg,var(--acc-2),var(--sup-3),rgba(127,180,242,.2),var(--acc-2));background-size:300% 100%;animation:flowline 1.6s linear infinite}
+@keyframes flowline{to{background-position:-300% 0}}
+@keyframes flowlineV{to{background-position:0 -300%}}
+.fs{display:block;width:100%;border-radius:18px;padding-bottom:8px}
+.fs .nd{position:relative;z-index:1;width:58px;height:58px;margin:0 auto 14px;border-radius:50%;display:grid;place-items:center;background:var(--base-2);border:2px solid var(--line-2);transition:transform .5s var(--ease),background .4s,border-color .4s,box-shadow .5s}
+.fs .nd svg{width:25px;height:25px;color:var(--sup-3);transition:color .4s}
+.fs:hover .nd{transform:translateY(-3px)}
+li.done .nd{border-color:var(--sup-2);background:var(--g-sup)}
+li.done .nd svg{color:#fff}
+li.active .nd{background:var(--g-acc);border-color:transparent;transform:scale(1.14);box-shadow:0 0 0 9px rgba(255,154,98,.16)}
+li.active .nd svg{color:#2a1206}
+.fs b{display:block;font-size:16.5px;font-weight:700;color:var(--ink)}
+.fs small{display:block;font-size:14px;color:var(--ink-3);margin-top:2px}
+.flow-detail{position:relative;overflow:hidden;margin-top:34px;padding:30px 34px 34px;border-radius:26px;border:1px solid var(--line-2);background:linear-gradient(150deg,rgba(30,79,156,.34),rgba(10,21,48,.7));display:grid;grid-template-columns:auto 1fr;gap:6px 30px;align-items:start;min-height:170px}
+.fd-n{font-size:72px;font-weight:800;line-height:1;letter-spacing:-.04em;background:var(--g-acc);-webkit-background-clip:text;background-clip:text;color:transparent;animation:swap .6s var(--ease)}
+.fd-body{animation:swap .6s var(--ease)}
+.fd-body h3{font-size:24px;font-weight:800;letter-spacing:-.02em;margin-bottom:6px}
+.fd-body p{color:var(--ink-2);max-width:64ch}
+.fd-body .tags{margin-top:14px}
+@keyframes swap{from{opacity:0;transform:translateY(14px)}}
+.fd-bar{position:absolute;left:0;bottom:0;height:4px;width:100%;transform-origin:0 50%;background:var(--g-acc);animation:fdbar 5.5s linear forwards}
+@keyframes fdbar{from{transform:scaleX(0)}to{transform:scaleX(1)}}
+@media(max-width:760px){
+  .flow-steps{grid-template-columns:1fr}
+  .flow-steps li{text-align:left;padding:0 0 22px}
+  .fs{display:grid;grid-template-columns:58px 1fr;gap:0 16px;align-items:center;text-align:left;padding-bottom:0}
+  .fs .nd{margin:0}
+  .flow-steps li:not(:last-child)::after{top:58px;left:27px;width:4px;height:calc(100% - 58px)}
+  .flow-steps li.active:not(:last-child)::after{background:linear-gradient(180deg,var(--acc-2),var(--sup-3),rgba(127,180,242,.2),var(--acc-2));background-size:100% 300%;animation:flowlineV 1.6s linear infinite}
+  .flow-detail{grid-template-columns:1fr;padding:24px 22px 30px}
+  .fd-n{font-size:52px}
+}
+
+/* funnel */
+.sub{font-size:13px;letter-spacing:.2em;text-transform:uppercase;color:var(--sup-3);font-weight:700;margin-top:76px}
+.funnel{margin-top:22px;display:grid;grid-template-columns:1fr 1.1fr;gap:clamp(28px,6vw,80px);align-items:center}
+.fn-vis{container-type:inline-size;position:relative;height:340px;display:flex;flex-direction:column;align-items:center;gap:8px}
+.fn-l{position:relative;height:108px;width:var(--w);clip-path:polygon(0 0,100% 0,calc(100% - var(--i)) 100%,var(--i) 100%);display:grid;place-items:center;text-align:center;overflow:hidden;
+  background:var(--bgc);transform:scaleX(0);transition:transform 1.1s var(--ease),filter .3s;transition-delay:calc(var(--k)*.2s),0s;cursor:default}
+.funnel.in .fn-l{transform:none}
+.fn-l::after{content:"";position:absolute;inset:0;background:linear-gradient(100deg,transparent 30%,rgba(255,255,255,.22) 50%,transparent 70%);transform:translateX(-120%);animation:sweep 4.5s ease-in-out infinite;animation-delay:calc(var(--k)*.6s)}
+@keyframes sweep{60%,100%{transform:translateX(120%)}}
+.fn-l b{display:block;font-size:22px;font-weight:800;letter-spacing:.02em;color:#fff;position:relative;z-index:1}
+.fn-l span{font-size:14px;color:rgba(255,255,255,.92);position:relative;z-index:1}
+.fn-l.l3 b,.fn-l.l3 span{color:#2a1206}
+.fn-l.hl{filter:brightness(1.22)}
+.drop{position:absolute;top:-6px;left:var(--x);width:8px;height:8px;border-radius:50%;background:#fff;box-shadow:0 0 12px 2px rgba(255,255,255,.7);opacity:0;animation:drop 4.2s ease-in infinite;animation-delay:var(--dl);z-index:3;pointer-events:none}
+@keyframes drop{0%{transform:translate(0,0);opacity:0}12%{opacity:1}88%{opacity:1}100%{transform:translate(var(--dx),340px);opacity:0}}
+.fn-cards{display:grid;gap:14px}
+.fn-c{padding:20px 24px;border-radius:20px;border:1px solid var(--line);background:var(--panel);position:relative;transition:transform .4s var(--ease),border-color .3s,background .3s;overflow:hidden}
+.fn-c::before{content:"";position:absolute;left:0;top:0;bottom:0;width:5px;background:var(--bgc)}
+.fn-c.hl{transform:translateX(8px);border-color:var(--line-2);background:rgba(30,79,156,.3)}
+.fn-c span{font-size:12.5px;letter-spacing:.16em;font-weight:700;color:var(--acc-1)}
+.fn-c h4{font-size:20px;font-weight:700;margin:2px 0 4px}
+.fn-c p{font-size:15.5px;color:var(--ink-2)}
+@media(max-width:900px){.funnel{grid-template-columns:1fr}.fn-vis{max-width:420px;margin:0 auto;width:100%}}
+
+/* karya */
+.work-head{display:flex;justify-content:space-between;align-items:flex-end;gap:24px;flex-wrap:wrap}
+.toolbar{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:16px;margin:38px 0 34px}
+.chips{display:flex;flex-wrap:wrap;gap:10px}
+.chip{padding:10px 18px;border-radius:99px;border:1px solid var(--line-2);font-size:14.5px;color:var(--ink-2);transition:.3s var(--ease);display:inline-flex;gap:8px;align-items:center}
+.chip small{font-size:12px;opacity:.7}
+.chip:hover{color:var(--ink);border-color:var(--sup-3)}
+.chip[aria-pressed=true]{background:var(--g-sup);border-color:transparent;color:#fff;box-shadow:0 10px 28px -12px var(--sup-2)}
+.view-toggle{display:flex;padding:4px;border-radius:99px;border:1px solid var(--line-2);background:rgba(10,21,48,.5)}
+.view-toggle button{padding:8px 18px;border-radius:99px;font-size:14px;color:var(--ink-2);transition:.3s}
+.view-toggle button[aria-pressed=true]{background:var(--g-acc);color:#2a1206;font-weight:600}
+.cat-note{color:var(--ink-3);font-size:15px;min-height:26px;margin-bottom:26px}
+
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+.card{position:relative;text-align:left;border-radius:22px;overflow:hidden;border:1px solid var(--line);background:var(--panel);display:flex;flex-direction:column;
+  transform:perspective(900px) rotateX(var(--rx,0deg)) rotateY(var(--ry,0deg));transition:transform .35s var(--ease),border-color .35s,box-shadow .35s;will-change:transform;animation:pop .7s var(--ease) both;animation-delay:calc(var(--i,0)*45ms)}
+@keyframes pop{from{opacity:0;transform:translateY(22px) scale(.97)}}
+.card:hover{border-color:var(--line-2);box-shadow:0 30px 60px -30px rgba(0,0,0,.7),0 0 0 1px rgba(127,180,242,.12)}
+.card::after,.glare::after{content:"";position:absolute;inset:0;pointer-events:none;opacity:0;transition:opacity .35s;background:radial-gradient(420px circle at var(--mx,50%) var(--my,50%),rgba(255,255,255,.1),transparent 55%)}
+.card:hover::after,.glare:hover::after{opacity:1}
+.thumb{position:relative;aspect-ratio:16/11;overflow:hidden;background:var(--base-3)}
+.thumb img,.thumb video,.thumb .gen{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform .9s var(--ease)}
+.card:hover .thumb>*{transform:scale(1.06)}
+.gen{background:linear-gradient(calc(135deg + var(--rot)),var(--a),var(--b));display:grid;place-items:center;overflow:hidden}
+.gen svg{position:absolute;inset:0;width:100%;height:100%}
+.gen-n{position:relative;font-family:var(--serif);font-weight:800;font-size:clamp(64px,9vw,110px);color:rgba(255,255,255,.88);letter-spacing:-.03em;text-shadow:0 10px 40px rgba(0,0,0,.3)}
+.badge{position:absolute;left:14px;top:14px;z-index:2;padding:6px 13px;border-radius:99px;font-size:12px;font-weight:600;background:rgba(6,13,28,.72);backdrop-filter:blur(8px);border:1px solid var(--line-2)}
+.vid-dot{position:absolute;right:14px;top:14px;z-index:2;width:34px;height:34px;border-radius:50%;display:grid;place-items:center;background:var(--g-acc);color:#2a1206}
+.vid-dot svg{width:13px;height:13px;margin-left:2px}
+.card-b{padding:20px 22px 24px;display:flex;flex-direction:column;gap:8px;flex:1}
+.card-b h3{font-family:var(--serif);font-weight:700;font-size:22px;line-height:1.25}
+.card-b .meta{font-size:13.5px;color:var(--ink-3)}
+.card-b p{font-size:15px;color:var(--ink-2);display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
+.more{margin-top:auto;padding-top:10px;font-size:14px;font-weight:600;color:var(--acc-1);display:flex;gap:8px;align-items:center}
+.more i{transition:transform .3s var(--ease);font-style:normal}
+.card:hover .more i{transform:translateX(6px)}
+
+/* index view */
+.index{display:none;border-top:1px solid var(--line)}
+.index.on{display:block}
+.grid.off{display:none}
+.row{display:grid;grid-template-columns:70px 1.6fr 1.1fr .8fr 40px;gap:18px;align-items:center;width:100%;text-align:left;padding:24px 8px;border-bottom:1px solid var(--line);transition:padding .4s var(--ease),background .4s;position:relative;animation:pop .6s var(--ease) both;animation-delay:calc(var(--i,0)*30ms)}
+.row:hover{padding-left:26px;background:linear-gradient(90deg,rgba(52,120,212,.16),transparent)}
+.row .no{font-family:var(--serif);font-style:normal;color:var(--ink-3);font-size:20px}
+.row .tt{font-family:var(--serif);font-weight:600;font-size:clamp(20px,2.4vw,29px);line-height:1.2}
+.row .ct{font-size:14.5px;color:var(--sup-3)}
+.row .yr{font-size:14px;color:var(--ink-3)}
+.row .ar{width:38px;height:38px;border-radius:50%;border:1px solid var(--line-2);display:grid;place-items:center;transition:.35s var(--ease)}
+.row:hover .ar{background:var(--g-acc);border-color:transparent;color:#2a1206;transform:rotate(-45deg)}
+#idx-preview{position:fixed;left:0;top:0;width:290px;aspect-ratio:4/3;border-radius:18px;overflow:hidden;z-index:60;pointer-events:none;opacity:0;transform:translate(-999px,-999px) scale(.85);transition:opacity .25s,scale .3s;box-shadow:0 30px 70px -20px rgba(0,0,0,.8);border:1px solid var(--line-2)}
+#idx-preview.on{opacity:1}
+#idx-preview>*{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.empty{padding:60px 0;text-align:center;color:var(--ink-3)}
+
+/* modal */
+.modal{position:fixed;inset:0;z-index:100;display:grid;place-items:center;padding:20px;visibility:hidden;opacity:0;transition:opacity .4s,visibility .4s}
+.modal.open{visibility:visible;opacity:1}
+.m-back{position:absolute;inset:0;background:rgba(3,7,16,.82);backdrop-filter:blur(10px)}
+.m-card{position:relative;width:min(1100px,100%);max-height:92vh;overflow:auto;border-radius:26px;border:1px solid var(--line-2);background:linear-gradient(160deg,#0B1736,#07102A);display:grid;grid-template-columns:1.25fr 1fr;
+  transform:perspective(1200px) translateY(40px) rotateX(8deg) scale(.96);transition:transform .6s var(--ease);box-shadow:0 50px 100px -30px #000}
+.modal.open .m-card{transform:none}
+.m-media{padding:18px;display:flex;flex-direction:column;gap:12px;min-width:0}
+.m-stage{position:relative;aspect-ratio:4/3;border-radius:18px;overflow:hidden;background:var(--base-3)}
+.m-stage>*{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;background:#050B18}
+.m-stage .gen{object-fit:cover}
+.m-stage .note{position:absolute;left:14px;bottom:14px;top:auto;inset:auto auto 14px 14px;width:auto;height:auto;padding:8px 14px;border-radius:99px;font-size:12.5px;background:rgba(6,13,28,.75);backdrop-filter:blur(8px);color:var(--ink-2)}
+.m-thumbs{display:flex;gap:10px;overflow:auto;padding-bottom:4px}
+.m-thumbs button{flex:0 0 84px;aspect-ratio:4/3;border-radius:10px;overflow:hidden;border:2px solid transparent;opacity:.6;transition:.3s;position:relative;background:var(--base-3)}
+.m-thumbs button[aria-current=true]{border-color:var(--acc-2);opacity:1}
+.m-thumbs img,.m-thumbs video{width:100%;height:100%;object-fit:cover}
+.m-info{padding:34px 34px 30px 22px;display:flex;flex-direction:column;gap:14px}
+.m-info .cat{font-size:12.5px;letter-spacing:.2em;text-transform:uppercase;color:var(--acc-1);font-weight:700}
+.m-info h3{font-family:var(--serif);font-weight:700;font-size:clamp(26px,3vw,38px);line-height:1.12}
+.m-info dl{display:grid;grid-template-columns:auto 1fr;gap:6px 16px;font-size:14.5px;padding:14px 0;border-block:1px solid var(--line)}
+.m-info dt{color:var(--ink-3)}
+.m-info dd{color:var(--ink)}
+.m-info p{color:var(--ink-2);font-size:15.5px}
+.m-info ul{list-style:none;display:grid;gap:9px}
+.m-info li{position:relative;padding-left:22px;font-size:15px;color:var(--ink-2)}
+.m-info li::before{content:"";position:absolute;left:0;top:.7em;width:8px;height:8px;transform:rotate(45deg);background:var(--g-acc)}
+.tags{display:flex;flex-wrap:wrap;gap:8px}
+.tags span{padding:5px 12px;border-radius:99px;font-size:12.5px;background:rgba(52,120,212,.18);border:1px solid var(--line-2);color:var(--sup-3)}
+.m-nav{display:flex;justify-content:space-between;gap:10px;margin-top:auto;padding-top:10px}
+.m-nav button{padding:10px 18px;border-radius:99px;border:1px solid var(--line-2);font-size:14px;color:var(--ink-2);transition:.3s}
+.m-nav button:hover{background:rgba(52,120,212,.22);color:var(--ink)}
+.m-close{position:absolute;right:14px;top:14px;z-index:3;width:42px;height:42px;border-radius:50%;background:rgba(6,13,28,.8);border:1px solid var(--line-2);display:grid;place-items:center;transition:.35s var(--ease)}
+.m-close:hover{background:var(--g-acc);color:#2a1206;transform:rotate(90deg)}
+
+/* about */
+.about-grid{display:grid;grid-template-columns:.8fr 1.2fr;gap:clamp(30px,6vw,86px);align-items:center}
+.portrait{position:relative;aspect-ratio:4/5;border-radius:28px;max-width:440px;transform:perspective(1000px) rotateX(var(--rx,0deg)) rotateY(var(--ry,0deg));transition:transform .4s var(--ease)}
+.portrait .frame{position:absolute;inset:0;border-radius:28px;overflow:hidden;border:1px solid var(--line-2);background:var(--g-sup)}
+.portrait .frame::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 55%,rgba(5,11,24,.55));pointer-events:none}
+.portrait img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.portrait .mono{position:absolute;inset:0;display:grid;place-items:center;font-family:var(--serif);font-size:120px;font-weight:800;color:rgba(255,255,255,.9)}
+.portrait::before{content:"";position:absolute;inset:18px -18px -18px 18px;border-radius:28px;border:1px solid rgba(255,154,98,.5);z-index:-1;transform:translateZ(-30px)}
+.portrait .tag{position:absolute;right:-14px;bottom:30px;padding:12px 18px;border-radius:16px;background:rgba(10,21,48,.85);backdrop-filter:blur(10px);border:1px solid var(--line-2);font-size:13.5px;transform:translateZ(50px)}
+.portrait .tag b{display:block;font-family:var(--serif);font-weight:700;font-size:20px;background:var(--g-acc);-webkit-background-clip:text;background-clip:text;color:transparent}
+.about p{color:var(--ink-2);margin-bottom:16px;max-width:62ch}
+.facts{display:grid;grid-template-columns:repeat(2,1fr);gap:14px;margin-top:28px}
+.fact{padding:18px 20px;border-radius:18px;border:1px solid var(--line);background:var(--panel)}
+.fact small{display:block;color:var(--ink-3);font-size:12.5px;letter-spacing:.08em;text-transform:uppercase}
+.fact span{font-size:16px}
+
+/* timeline */
+.tl{position:relative;margin-top:50px;padding-left:34px}
+.tl::before{content:"";position:absolute;left:7px;top:8px;bottom:8px;width:2px;background:linear-gradient(var(--acc-2),var(--sup-2) 30%,var(--sup-1) 80%,transparent)}
+.tl-item{position:relative;margin-bottom:26px}
+.tl-item::before{content:"";position:absolute;left:-34px;top:30px;width:16px;height:16px;border-radius:50%;background:var(--base-1);border:3px solid var(--acc-2);box-shadow:0 0 0 6px rgba(255,154,98,.12)}
+.tl-item:not(:first-child)::before{border-color:var(--sup-2);box-shadow:0 0 0 6px rgba(52,120,212,.12)}
+.tl-card{padding:28px 30px;border-radius:22px;border:1px solid var(--line);background:var(--panel);transform:perspective(1000px) rotateX(var(--rx,0deg)) rotateY(var(--ry,0deg));transition:transform .35s var(--ease),border-color .3s;position:relative;overflow:hidden}
+.tl-card:hover{border-color:var(--line-2)}
+.tl-top{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;align-items:baseline}
+.tl-card h3{font-family:var(--serif);font-weight:700;font-size:24px}
+.tl-card .when{font-size:14px;color:var(--acc-1);font-style:normal}
+.tl-card .co{color:var(--sup-3);font-size:15px;margin:2px 0 14px}
+.tl-card ul{list-style:none;display:grid;gap:8px}
+.tl-card li{position:relative;padding-left:20px;font-size:15.5px;color:var(--ink-2)}
+.tl-card li::before{content:"";position:absolute;left:0;top:.72em;width:6px;height:6px;border-radius:50%;background:var(--sup-3)}
+
+/* skills */
+.skills{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;margin-top:46px}
+.skill{padding:30px 28px;border-radius:22px;border:1px solid var(--line);background:var(--panel);position:relative;overflow:hidden;transform:perspective(900px) rotateX(var(--rx,0deg)) rotateY(var(--ry,0deg));transition:transform .35s var(--ease),border-color .3s}
+.skill:hover{border-color:var(--line-2)}
+.skill .ic{width:52px;height:52px;border-radius:16px;display:grid;place-items:center;background:var(--g-sup);margin-bottom:20px;box-shadow:0 12px 30px -12px var(--sup-2);transform:translateZ(30px)}
+.skill:nth-child(3n) .ic{background:var(--g-acc);color:#2a1206;box-shadow:0 12px 30px -12px var(--acc-3)}
+.skill .ic svg{width:24px;height:24px}
+.skill h3{font-family:var(--serif);font-weight:700;font-size:22px;margin-bottom:8px}
+.skill p{font-size:15px;color:var(--ink-2)}
+.tools{display:flex;flex-wrap:wrap;gap:10px;margin-top:34px}
+.tools span{padding:9px 17px;border-radius:99px;font-size:14px;border:1px solid var(--line-2);color:var(--ink-2);transition:.3s}
+.tools span:hover{background:var(--g-sup);color:#fff;border-color:transparent;transform:translateY(-3px)}
+.edu{display:grid;grid-template-columns:repeat(2,1fr);gap:22px;margin-top:60px}
+.edu div{padding:24px 26px;border-radius:20px;border:1px dashed var(--line-2)}
+.edu small{color:var(--acc-1);font-style:normal}
+.edu h4{font-family:var(--serif);font-weight:700;font-size:20px;margin-top:4px}
+.edu p{font-size:14.5px;color:var(--ink-3)}
+
+/* contact */
+.contact{text-align:center;overflow:hidden}
+.contact::before{content:"";position:absolute;left:50%;top:50%;width:min(900px,90vw);aspect-ratio:1;transform:translate(-50%,-50%);border-radius:50%;background:radial-gradient(closest-side,rgba(52,120,212,.35),transparent);z-index:-1}
+.contact h2{font-family:var(--serif);font-weight:800;font-size:clamp(34px,5.6vw,72px);line-height:1.06;letter-spacing:-.035em;margin:20px auto 22px;max-width:17ch}
+.contact h2 em{font-style:normal;background:var(--g-acc);-webkit-background-clip:text;background-clip:text;color:transparent;padding-right:.06em}
+.contact .cta-row{justify-content:center}
+.contact .lead{margin-inline:auto}
+footer{border-top:1px solid var(--line);padding:30px 0 40px;color:var(--ink-3);font-size:14px}
+.foot{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:16px}
+.pal{display:flex;height:8px;width:160px;border-radius:99px;overflow:hidden}
+.pal i{display:block}.pal i:nth-child(1){width:60%;background:var(--g-base);box-shadow:inset 0 0 0 1px var(--line-2)}.pal i:nth-child(2){width:30%;background:var(--g-sup)}.pal i:nth-child(3){width:10%;background:var(--g-acc)}
+
+/* cursor */
+.cur{position:fixed;left:0;top:0;width:34px;height:34px;margin:-17px 0 0 -17px;border:1px solid rgba(255,201,135,.7);border-radius:50%;pointer-events:none;z-index:200;transition:width .3s var(--ease),height .3s var(--ease),margin .3s var(--ease),background .3s,opacity .3s;opacity:0}
+.cur.on{opacity:1}
+.cur.big{width:64px;height:64px;margin:-32px 0 0 -32px;background:rgba(255,154,98,.12)}
+
+/* chat (gaya WhatsApp) */
+#chat-fab{position:fixed;right:24px;bottom:24px;z-index:95;width:66px;height:66px;border-radius:50%;background:linear-gradient(145deg,#3BE382,#1FAF5A 60%,#0F8F4A);color:#fff;display:grid;place-items:center;box-shadow:0 14px 34px -8px rgba(20,160,90,.85);transition:transform .4s var(--ease);animation:fabping 2.8s infinite}
+@keyframes fabping{0%{box-shadow:0 14px 34px -8px rgba(20,160,90,.85),0 0 0 0 rgba(37,211,102,.5)}70%,100%{box-shadow:0 14px 34px -8px rgba(20,160,90,.85),0 0 0 18px rgba(37,211,102,0)}}
+#chat-fab:hover{transform:scale(1.08)}
+#chat-fab svg{width:36px;height:36px;position:absolute;transition:transform .45s var(--ease),opacity .3s}
+#chat-fab .x{width:28px;height:28px;opacity:0;transform:rotate(-90deg) scale(.5)}
+#chat-fab.open .x{opacity:1;transform:none}
+#chat-fab.open .c{opacity:0;transform:rotate(90deg) scale(.5)}
+#chat-fab.open{animation:none}
+#chat-fab .dot{position:absolute;right:-2px;top:-2px;width:22px;height:22px;border-radius:50%;background:var(--acc-3);color:#fff;font-size:12px;font-weight:800;display:grid;place-items:center;border:2px solid var(--base-1)}
+#chat-fab.open .dot,#chat-fab.seen .dot{display:none}
+#teaser{position:fixed;right:24px;bottom:104px;z-index:94;max-width:270px;padding:14px 18px;border-radius:18px 18px 4px 18px;background:#17294F;color:#fff;border:1px solid var(--line-2);font-size:15px;line-height:1.5;font-weight:500;box-shadow:0 18px 44px -14px rgba(0,0,0,.8);opacity:0;transform:translateY(12px) scale(.94);transform-origin:100% 100%;pointer-events:none;transition:.5s var(--ease)}
+#teaser.on{opacity:1;transform:none;pointer-events:auto;cursor:pointer}
+#chat{position:fixed;right:24px;bottom:104px;z-index:96;width:min(390px,calc(100vw - 32px));height:min(620px,calc(100svh - 130px));border-radius:20px;overflow:hidden;display:flex;flex-direction:column;border:1px solid var(--line-2);background:#0A1530;box-shadow:0 40px 90px -20px #000;
+  opacity:0;visibility:hidden;transform:translateY(24px) scale(.92);transform-origin:100% 100%;transition:.5s var(--ease)}
+#chat.open{opacity:1;visibility:visible;transform:none}
+.ch-head{display:flex;align-items:center;gap:10px;padding:10px 12px;background:#0F2147;border-bottom:1px solid var(--line)}
+.ch-back{width:36px;height:36px;border-radius:50%;display:grid;place-items:center;color:var(--ink-2);flex:0 0 auto;transition:background .25s}
+.ch-back:hover{background:rgba(127,180,242,.14)}
+.ch-av{position:relative;width:44px;height:44px;border-radius:50%;background:var(--g-sup) center/cover no-repeat;display:grid;place-items:center;font-weight:800;font-size:16px;flex:0 0 auto;border:2px solid rgba(255,255,255,.18)}
+.ch-av.ph span{display:none}
+.ch-who{flex:1;min-width:0}
+.ch-who b{display:block;font-size:16px;font-weight:700;line-height:1.25;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.ch-who small{font-size:13px;color:#7FE8A9;display:flex;align-items:center;gap:6px}
+.ch-who small::before{content:"";width:7px;height:7px;border-radius:50%;background:#2EE07A}
+.ch-wa{width:40px;height:40px;border-radius:50%;display:grid;place-items:center;background:#25D366;color:#fff;flex:0 0 auto;transition:transform .3s var(--ease)}
+.ch-wa:hover{transform:scale(1.08)}
+.ch-wa svg{width:22px;height:22px}
+.ch-body{flex:1;overflow-y:auto;padding:14px 12px 10px;display:flex;flex-direction:column;gap:5px;scroll-behavior:smooth;background-color:#091329;background-image:radial-gradient(rgba(127,180,242,.09) 1.3px,transparent 1.4px);background-size:22px 22px}
+.ch-day{align-self:center;padding:5px 13px;border-radius:8px;background:#16284F;font-size:12.5px;color:var(--ink-2);margin:2px 0 4px}
+.ch-note{align-self:center;max-width:94%;text-align:center;padding:9px 13px;border-radius:10px;background:rgba(255,201,135,.14);color:#FFDDB0;font-size:13px;line-height:1.45;margin-bottom:6px}
+.msg{max-width:84%;padding:8px 12px 6px;font-size:15px;line-height:1.5;border-radius:12px;position:relative;color:#fff;animation:bub .45s var(--ease) both;word-wrap:break-word}
+@keyframes bub{from{opacity:0;transform:translateY(14px) scale(.85)}}
+.msg.bot{align-self:flex-start;background:#1B2F5B;border-top-left-radius:3px;transform-origin:0 0}
+.msg.me{align-self:flex-end;background:#0E6B57;border-top-right-radius:3px;transform-origin:100% 0;margin-top:4px}
+.msg.tail::before{content:"";position:absolute;top:0;width:9px;height:13px}
+.msg.bot.tail::before{left:-8px;background:#1B2F5B;clip-path:polygon(100% 0,0 0,100% 100%)}
+.msg.me.tail::before{right:-8px;background:#0E6B57;clip-path:polygon(0 0,100% 0,0 100%)}
+.msg::after{content:"";display:block;clear:both}
+.msg .meta{float:right;margin:6px 0 -2px 14px;font-size:11px;color:rgba(255,255,255,.62);display:flex;gap:4px;align-items:center}
+.msg .tk{color:#79C2FF;letter-spacing:-.14em;font-size:12px}
+.msg a:not(.act){color:#8CC8FF;font-weight:700;text-decoration:underline}
+.msg ul{margin:6px 0 2px 18px}
+.msg li{margin:2px 0}
+.act{display:flex;align-items:center;justify-content:center;gap:8px;margin-top:10px;padding:10px 14px;border-radius:10px;background:#25D366;color:#06301a;font-weight:700;font-size:14.5px;text-decoration:none;transition:filter .25s}
+.act:hover{filter:brightness(1.1)}
+.act svg{width:18px;height:18px}
+.act.sec{background:var(--g-sup);color:#fff}
+.typing{align-self:flex-start;display:flex;gap:5px;padding:14px 16px;background:#1B2F5B;border-radius:12px;border-top-left-radius:3px;animation:bub .4s var(--ease) both}
+.typing i{width:7px;height:7px;border-radius:50%;background:#9DB4E0;animation:dt 1.1s infinite}
+.typing i:nth-child(2){animation-delay:.15s}.typing i:nth-child(3){animation-delay:.3s}
+@keyframes dt{0%,60%,100%{transform:none;opacity:.5}30%{transform:translateY(-5px);opacity:1}}
+.ch-q{display:flex;gap:8px;overflow-x:auto;padding:10px 12px;background:#0C1A3A;border-top:1px solid var(--line);scrollbar-width:none}
+.ch-q::-webkit-scrollbar{display:none}
+.ch-q button{flex:0 0 auto;padding:8px 14px;border-radius:99px;border:1px solid var(--line-2);font-size:13.5px;font-weight:600;color:#A9D0FF;transition:.25s;white-space:nowrap}
+.ch-q button:hover{background:var(--g-sup);color:#fff;border-color:transparent}
+.ch-in{display:flex;gap:8px;padding:8px 10px 12px;background:#0F2147}
+.ch-in input{flex:1;min-width:0;padding:12px 18px;border-radius:24px;border:0;background:#1A2D58;color:#fff;font:inherit;font-size:15px}
+.ch-in input::placeholder{color:#9DACC8}
+.ch-in input:focus{outline:2px solid rgba(37,211,102,.55)}
+.ch-in button{width:46px;height:46px;border-radius:50%;background:#25D366;color:#06301a;display:grid;place-items:center;flex:0 0 auto;transition:transform .3s var(--ease)}
+.ch-in button:hover{transform:scale(1.08)}
+.ch-in svg{width:20px;height:20px}
+
+/* responsive */
+@media(max-width:1020px){
+  .hero-grid{grid-template-columns:1fr}
+  .hero-3d{max-width:520px;margin:0 auto;order:-1;max-height:420px}
+  .hero{padding-top:100px}
+  .grid,.skills{grid-template-columns:repeat(2,1fr)}
+  .m-card{grid-template-columns:1fr}
+  .m-info{padding:6px 24px 28px}
+  .about-grid{grid-template-columns:1fr}
+  .portrait{margin:0 auto 30px}
+  .scroll-hint{display:none}
+}
+@media(max-width:760px){
+  body{font-size:16.5px}
+  .wrap{width:calc(100% - 36px)}
+  .nav-links{position:fixed;inset:74px 0 auto 0;flex-direction:column;padding:14px 18px 24px;background:rgba(6,13,28,.96);backdrop-filter:blur(16px);border-bottom:1px solid var(--line);transform:translateY(-130%);transition:transform .5s var(--ease);gap:2px}
+  .nav-links.open{transform:none}
+  .nav-links a{padding:14px;font-size:16px}
+  .nav-cta{display:none}
+  .burger{display:block}
+  .grid,.skills,.edu,.facts{grid-template-columns:1fr}
+  .stats{grid-template-columns:repeat(2,auto);gap:22px 40px}
+  .row{grid-template-columns:44px 1fr 30px;gap:12px}
+  .row .ct,.row .yr{display:none}
+  #idx-preview{display:none}
+  .float-tag{font-size:11.5px;padding:6px 11px}
+  .tl-card{padding:22px 20px}
+  #chat{right:16px;bottom:96px}
+  #chat-fab{right:16px;bottom:16px}
+  #teaser{right:16px;bottom:92px}
+  .cur{display:none}
+}
+@media(hover:none){.cur{display:none}}
+@media(prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important;scroll-behavior:auto!important}
+  .js .rv{opacity:1;transform:none}
+  h1.name .ln>span{transform:none}
+}
+</style>
 </head>
-<body data-spy="scroll" data-target=".navbar" data-offset="40" id="home">
+<body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><symbol id="i-wa" viewBox="0 0 24 24"><path fill="currentColor" d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></symbol></svg>
+<div class="bg" aria-hidden="true"><i></i><i></i><i></i></div>
+<div class="grain" aria-hidden="true"></div>
+<div class="progress" id="progress"></div>
+<div class="cur" id="cur" aria-hidden="true"></div>
 
-//PAGE NAVIGATION
-    <nav class="navbar navbar-expand-lg navbar-light fixed-top" data-spy="affix" data-offset-top="0">
-        <div class="container">
-            <a class="navbar-brand" href="#">
-                <img src="assets/imgs/200.gif" alt="Logo">
-            </a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class="navbar-nav ml-auto align-items-center">
-                    <li class="nav-item">
-                        <a class="nav-link" href="#home">Home</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#about">About</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#service">Service</a>
-                    </li>                   
-                    <li class="nav-item">
-                        <a class="nav-link" href="#portfolio">Portfolio</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#testmonial">Testmonial</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#blog">Blog</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#contact">Contact</a>
-                    </li>
-                </ul>
-            </div>
-        </div>          
+<header class="nav" id="nav">
+  <div class="wrap nav-in">
+    <a href="#top" class="logo" aria-label="Dickya Hidayah Putra"><b>DH</b><span>Dickya H. Putra</span></a>
+    <nav class="nav-links" id="navlinks" aria-label="Menu utama">
+      <a href="#karya">Karya</a><a href="#carakerja">Cara kerja</a><a href="#tentang">Tentang</a><a href="#pengalaman">Pengalaman</a><a href="#keahlian">Keahlian</a><a href="#kontak">Kontak</a>
     </nav>
-    <!-- End of page navibation -->
+    <a href="#kontak" class="nav-cta">Ajak kerja sama</a>
+    <button class="burger" id="burger" aria-label="Buka menu" aria-expanded="false"><span></span><span></span></button>
+  </div>
+</header>
 
-//PAGE HEADBARNYA
-    <header class="header" id="home">
-        <div class="container">
-            <div class="infos">
-                <h6 class="subtitle">hello,I'm</h6>
-                <h6 class="title">Dickya Hidayah</h6>
-                <p>UI/UX Web Development</p>
+<main id="top">
+<!-- HERO -->
+<section class="hero" style="padding-bottom:70px">
+  <div class="wrap hero-grid">
+    <div>
+      <span class="kicker rv"><i></i> Terbuka untuk proyek &amp; kolaborasi baru</span>
+      <h1 class="name" aria-label="Dickya Hidayah Putra"><span class="ln"><span>Dickya</span></span><span class="ln"><span>Hidayah</span></span><span class="ln"><span>Putra</span></span></h1>
+      <p class="role rv" style="--d:.5s">Manajer Pemasaran <span>·</span> Multi-Channel &amp; Performance Marketing</p>
+      <p class="lead rv" style="--d:.6s">Merancang strategi dari marketplace, iklan berbayar, sampai live commerce, lalu mengeksekusinya sendiri lewat web, desain, dan visual 3D.</p>
+      <div class="cta-row rv" style="--d:.7s">
+        <a href="#karya" class="btn pri">Lihat karya <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+        <a href="#" class="btn ghost" data-wa>Chat via WhatsApp</a>
+      </div>
+      <div class="stats rv" style="--d:.8s">
+        <div class="stat"><b data-count="7" data-suffix="">0</b><span>brand &amp; klien</span></div>
+        <div class="stat"><b data-count="3">0</b><span>platform iklan</span></div>
+        <div class="stat"><b data-count="21">0</b><span>proyek terpilih</span></div>
+        <div class="stat"><b data-count="15" data-suffix=" bln">0</b><span>memimpin tim</span></div>
+      </div>
+    </div>
+    <div class="hero-3d" id="hero3d">
+      <canvas id="hero-canvas" aria-hidden="true"></canvas>
+      <span class="float-tag">Marketplace</span><span class="float-tag">Performance Ads</span><span class="float-tag">Live Commerce</span><span class="float-tag">3D &amp; Web</span>
+    </div>
+  </div>
+  <div class="scroll-hint"><span>Gulir</span><i></i></div>
+</section>
 
-                <div class="buttons pt-3">
-                    <a href="https://www.linkedin.com/in/dickyahidayah/" target="_blank">
-                        <button class="btn btn-primary rounded">HIRE ME</button>
-                    </a>
-                    <a href="assets/document/Cv.pdf" class="btn btn-dark rounded" download="Dickya_Hidayah_CV.pdf">DOWNLOAD CV</a>
-                </div>
+<section class="disc" id="disiplin">
+  <div class="wrap">
+    <div class="disc-head rv">
+      <div><span class="eyebrow">Disiplin</span>
+        <h2 class="title" style="margin-bottom:0">Enam bidang, <em>satu</em> alur kerja.</h2></div>
+      <p class="hint">Arahkan kursor atau ketuk panel untuk membukanya.</p>
+    </div>
+    <div class="disc-row rv" id="disc"></div>
+  </div>
+</section>
 
-                <div class="socials mt-4">
-                    <a class="social-item" href="https://www.facebook.com/diki.hidayat.7311" target="_blank" rel="noopener noreferrer"><i class="ti-facebook"></i></a>
-                    <a class="social-item" href="mailto:dickyahidayah12@gmail.com?subject=Permintaan Informasi&body=Hai.. apakah anda ada waktu?" target="_blank"><i class="ti-google"></i></a>
-                    <a class="social-item" href="https://github.com/DickyaHidayah" target="_blank" rel="noopener noreferrer"><i class="ti-github"></i></a>
-                    <a class="social-item" href="javascript:void(0)" onclick="alert('Maaf, saat ini pengguna tidak menggunakan sosial media ini.');"><i class="ti-twitter"></i></a>
-                </div>
-            </div>              
-            <div class="img-holder">
-                <img src="assets/imgs/MAN2.png" alt="">
-            </div>      
-        </div>  
+<!-- KARYA -->
+<section id="karya">
+  <div class="wrap">
+    <div class="work-head">
+      <div class="rv"><span class="eyebrow">Indeks karya</span>
+        <h2 class="title">Proyek yang <em>dikerjakan</em>,<br>dikelompokkan rapi.</h2>
+        <p class="lead">Pilih kategori, lalu buka proyek untuk melihat foto, video, peran, dan hasil kerjanya.</p></div>
+    </div>
+    <div class="toolbar rv">
+      <div class="chips" id="chips" role="group" aria-label="Filter kategori"></div>
+      <div class="view-toggle" role="group" aria-label="Tampilan"><button id="v-grid" aria-pressed="true">Kartu</button><button id="v-index" aria-pressed="false">Indeks</button></div>
+    </div>
+    <p class="cat-note" id="catnote"></p>
+    <div class="grid" id="grid"></div>
+    <div class="index" id="index"></div>
+  </div>
+</section>
 
-        <!-- Header-widget -->
-        <div class="widget">
-            <div class="widget-item">
-                <h2>10</h2>
-                <p>Web Project</p>
-            </div>
-            <div class="widget-item">
-                <h2>3</h2>
-                <p>Mobile Project</p>
-            </div>
-            <div class="widget-item">
-                <h2>3</h2>
-                <p>Game Project</p>
-            </div>
-        </div>
-    </header>
-    <!-- End of Page Header -->
-    
-    <!-- About section -->
-    <section id="about" class="section mt-3">
-        <div class="container mt-5">
-            <div class="row text-center text-md-left">
-                <div class="col-md-3">
-                    <img src="assets/imgs/man3.jpeg" alt="" class="img-thumbnail mb-4">
-                </div>
-                <div class="pl-md-4 col-md-9">
-                    <h6 class="title">Dickya Hidayah</h6>
-                    <p class="subtitle">UI/UX Web Development</p>
-                    <p>I am a passionate student from Politeknik Negeri Batam, specializing in design and technology. My expertise spans web development, mobile applications, gaming, and 3D asset creation. I am dedicated to infusing innovation and aesthetic appeal into every project I undertake.</p>
-<p>I take pride in being an alumni of batch 6 from the UI/UX Web Development program at PT Kinema Systrans Multimedia (Infinite Studios), where I honed my skills in designing user interfaces, developing full-stack websites using React JS, and collaborating effectively within teams. Each project presents an opportunity for me to refine my creativity and technical skills, ensuring that my work is not only visually appealing but also functional and innovative.</p>
-<p>Let's collaborate and transform creative ideas into reality!</p>
-                    <a href="assets/document/Cv.pdf" class="btn btn-primary rounded" download="Dickya_Hidayah_CV.pdf">DOWNLOAD CV</a>                   
-                </div>
-            </div>
-        </div>
-    </section>
+<!-- CARA KERJA -->
+<section id="carakerja">
+  <div class="wrap">
+    <div class="rv"><span class="eyebrow">Cara kerja</span>
+      <h2 class="title">Dari strategi sampai <em>laporan</em>,<br>satu alur yang terukur.</h2>
+      <p class="lead">Lima tahap yang aku jalankan di setiap kampanye. Klik tahap mana pun untuk melihat detailnya; diagram juga berjalan otomatis.</p></div>
+    <div class="flow rv" id="flow">
+      <ol class="flow-steps" id="flow-steps"></ol>
+      <div class="flow-detail" id="flow-detail" aria-live="polite"></div>
+    </div>
+    <h3 class="sub rv">Content plan berbasis funnel</h3>
+    <div class="funnel rv" id="funnel">
+      <div class="fn-vis" aria-label="Diagram funnel TOFU, MOFU, BOFU">
+        <div class="fn-l l1" data-k="0" style="--k:0;--w:100%;--i:11%;--bgc:linear-gradient(120deg,#1E4F9C,#3478D4)"><div><b>TOFU</b><span>Awareness</span></div></div>
+        <div class="fn-l l2" data-k="1" style="--k:1;--w:78%;--i:14%;--bgc:linear-gradient(120deg,#3478D4,#7FB4F2)"><div><b>MOFU</b><span>Pertimbangan</span></div></div>
+        <div class="fn-l l3" data-k="2" style="--k:2;--w:56%;--i:20%;--bgc:linear-gradient(120deg,#FFC987,#FF8A5C)"><div><b>BOFU</b><span>Konversi</span></div></div>
+        <i class="drop" style="--x:18%;--dx:17cqw;--dl:0s"></i><i class="drop" style="--x:27%;--dx:13cqw;--dl:0.7s"></i><i class="drop" style="--x:35%;--dx:9cqw;--dl:1.4s"></i><i class="drop" style="--x:65%;--dx:-9cqw;--dl:2.1s"></i><i class="drop" style="--x:73%;--dx:-13cqw;--dl:2.8s"></i><i class="drop" style="--x:82%;--dx:-17cqw;--dl:3.5s"></i>
+      </div>
+      <div class="fn-cards">
+        <div class="fn-c" data-k="0" style="--bgc:linear-gradient(180deg,#3478D4,#1E4F9C)"><span>TOFU</span><h4>Menjangkau audiens baru</h4><p>Konten yang memperkenalkan brand: kreator, KOL, dan konten sosial yang mudah dibagikan.</p></div>
+        <div class="fn-c" data-k="1" style="--bgc:linear-gradient(180deg,#7FB4F2,#3478D4)"><span>MOFU</span><h4>Membangun kepercayaan</h4><p>Konten yang menjawab keraguan: edukasi produk, ulasan, dan sesi live bersama host.</p></div>
+        <div class="fn-c" data-k="2" style="--bgc:linear-gradient(180deg,#FFC987,#FF8A5C)"><span>BOFU</span><h4>Mendorong pembelian</h4><p>Konten yang mengajak beli: promo bulanan, iklan berbayar, dan etalase marketplace.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
 
-    <!-- Service section -->
-    <section id="service" class="section">
-        <div class="container text-center">
-            <h6 class="subtitle">Service</h6>
-            <h6 class="section-title mb-4">What I Do</h6>
-            <p class="mb-5 pb-4">
-                As a UI/UX specialist and web developer, I am dedicated to creating intuitive and engaging user experiences. I blend aesthetic design with technical functionality to produce digital products that are not only visually appealing but also easy to use. From responsive websites to interactive mobile applications, each project is crafted to meet specific client needs and enhance user engagement.
-            </p>
-            <p class="mb-5 pb-4">
-                My expertise extends beyond web development. I also have experience in designing functional and user-friendly mobile applications, as well as developing immersive games. With a user-centric approach, I ensure that every design not only meets but exceeds client and end-user expectations.
-            </p>
-            
+<!-- TENTANG -->
+<section id="tentang">
+  <div class="wrap about-grid">
+    <div class="rv"><div class="portrait tilt" id="portrait">
+      <div class="frame"><div class="mono">D</div><img id="photo" alt="Foto Dickya Hidayah Putra" style="display:none"></div>
+      <div class="tag"><b>Jakarta Selatan</b>Ciganjur</div>
+    </div></div>
+    <div class="about rv" style="--d:.1s">
+      <span class="eyebrow">Tentang</span>
+      <h2 class="title">Strategi yang <em>terukur</em>, eksekusi yang rapi.</h2>
+      <p>Aku memegang strategi pemasaran multi-channel secara end-to-end, mencakup Shopee, TikTok Shop, iklan berbayar di Meta, TikTok, dan Shopee, live commerce, program KOL dan afiliasi, sampai website.</p>
+      <p>Latar teknis di web development, UI/UX, dan produksi 3D membuat aku bisa menyiapkan landing page, aset kreatif, dan analitik kampanye dengan cepat, tanpa menunggu pihak luar. Tim yang aku pimpin terdiri dari admin pemasaran, content creator, dan host live, dengan KPI yang jelas dan evaluasi rutin.</p>
+      <div class="facts">
+        <div class="fact"><small>Posisi saat ini</small><span>Marketing Manager, Confettindo Berkah Abadi</span></div>
+        <div class="fact"><small>Fokus</small><span>Multi-channel &amp; performance</span></div>
+        <div class="fact"><small>Lulusan</small><span>Teknologi Rekayasa Multimedia, Polibatam</span></div>
+        <div class="fact"><small>Bahasa kerja</small><span>Indonesia</span></div>
+      </div>
+    </div>
+  </div>
+</section>
 
-            <div class="row">
-                <div class="col-sm-6 col-md-3 mb-4">
-                    <div class="custom-card card border">
-                        <div class="card-body">
-                            <i class="icon ti-crown"></i>
-                            <h5>UI/UX Design</h5>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-sm-6 col-md-3 mb-4">
-                    <div class="custom-card card border">
-                        <div class="card-body">
-                            <i class="icon ti-desktop"></i>
-                            <h5>Web Design</h5>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-sm-6 col-md-3 mb-4">
-                    <div class="custom-card card border">
-                        <div class="card-body">
-                            <i class="icon ti-mobile"></i>
-                            <h5>App Design</h5>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-sm-6 col-md-3 mb-4">
-                    <div class="custom-card card border">
-                        <div class="card-body">
-                            <i class="icon ti-game"></i>
-                            <h5>Game Dev</h5>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-    <!-- End of Sectoin -->
+<!-- PENGALAMAN -->
+<section id="pengalaman">
+  <div class="wrap">
+    <div class="rv"><span class="eyebrow">Perjalanan</span>
+      <h2 class="title">Pengalaman <em>kerja</em></h2></div>
+    <div class="tl">
+      <div class="tl-item rv"><div class="tl-card tilt">
+        <div class="tl-top"><h3>Marketing Manager</h3><span class="when">Mei 2025 — sekarang</span></div>
+        <div class="co">Confettindo Berkah Abadi · Retail Tekstil (Home &amp; Living)</div>
+        <ul><li>Strategi pemasaran end-to-end di Shopee, TikTok Shop, dan media sosial</li><li>Kampanye berbayar Meta, TikTok, dan Shopee Ads untuk meningkatkan ROAS</li><li>Memimpin admin pemasaran, content creator, dan host live; mengelola website, blog SEO, afiliasi &amp; KOL, serta AI chat Malika</li></ul>
+      </div></div>
+      <div class="tl-item rv"><div class="tl-card tilt">
+        <div class="tl-top"><h3>Creative Manager</h3><span class="when">Des 2024 — Apr 2025</span></div>
+        <div class="co">Ceratech · Retail Elektronik</div>
+        <ul><li>Memimpin kampanye multi-cabang: CeraFest, Imlek Sale, Valentine SSD Promo, Back to School, Friend Referral</li><li>Media berbayar Meta &amp; TikTok untuk traffic marketplace dan kunjungan cabang</li><li>Koordinasi vendor, influencer, mitra desain, dan anggaran produksi kreatif</li></ul>
+      </div></div>
+      <div class="tl-item rv"><div class="tl-card tilt">
+        <div class="tl-top"><h3>Marketing &amp; Communication Intern</h3><span class="when">Jul — Nov 2024</span></div>
+        <div class="co">Anindhaloka · Event Organizer</div>
+        <ul><li>Konten kreatif dan materi komunikasi visual untuk kampanye kemitraan</li><li>Animasi lingkungan 3D (Blender) dan dukungan audio-visual acara</li></ul>
+      </div></div>
+      <div class="tl-item rv"><div class="tl-card tilt">
+        <div class="tl-top"><h3>UI/UX &amp; Web Development Intern (MSIB)</h3><span class="when">Feb — Jun 2024</span></div>
+        <div class="co">PT Kinema Systrans Multimedia (Infinite Studios)</div>
+        <ul><li>Website responsif dengan React JS yang berpusat pada pengguna</li><li>Riset pengguna untuk mendukung keputusan produk</li></ul>
+      </div></div>
+    </div>
+  </div>
+</section>
 
-    <!-- Skills section -->
-    <section class="section">
-        <div class="container text-center">
-            <h6 class="subtitle">Skills</h6>
-            <h6 class="section-title mb-4">Why Choose me</h6>
-            <p class="mb-5 pb-4">
-                With honed expertise in web development, mobile app design, and game creation, I bring creativity and innovation to every project. My proficiency in 3D asset creation adds an additional dimension to the solutions I offer. Choose me for results that not only meet but exceed your expectations.
-            </p>
-            
-            <div class="row text-left">
-                <div class="col-sm-6">
-                    <h6 class="mb-3">3D DESAIN</h6>
-                    <div class="progress">
-                        <div class="progress-bar bg-primary" role="progressbar" style="width: 80%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"><span>89%</span></div>
-                    </div>
-                </div>
-                <div class="col-sm-6">
-                    <h6 class="mb-3">Web Design</h6>
-                    <div class="progress">
-                        <div class="progress-bar bg-primary" role="progressbar" style="width: 70%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"><span>83%</span></div>
-                    </div>
-                </div>
-                <div class="col-sm-6">
-                    <h6 class="mb-3">App Design</h6>
-                    <div class="progress">
-                        <div class="progress-bar bg-primary" role="progressbar" style="width: 65%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"><span>95%</span></div>
-                    </div>
-                </div>
-                <div class="col-sm-6">
-                    <h6 class="mb-3">Game Dev</h6>
-                    <div class="progress">
-                        <div class="progress-bar bg-primary" role="progressbar" style="width: 90%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"><span>90%</span></div>
-                    </div>
-                </div>
-            </div>  
-        </div>
-    </section>
-    <!-- End of Skills sections -->
+<!-- KEAHLIAN -->
+<section id="keahlian">
+  <div class="wrap">
+    <div class="rv"><span class="eyebrow">Kompetensi</span>
+      <h2 class="title">Apa yang bisa aku <em>bawa</em> ke tim kamu.</h2></div>
+    <div class="skills" id="skills"></div>
+    <div class="tools rv" id="tools"></div>
+    <div class="edu rv">
+      <div><small>2021 — 2025</small><h4>Teknologi Rekayasa Multimedia</h4><p>Politeknik Negeri Batam</p></div>
+      <div><small>Juli 2017 — Mei 2020</small><h4>Rekayasa Perangkat Lunak</h4><p>SMKN 4 Batam</p></div>
+    </div>
+  </div>
+</section>
 
-    <!-- Portfolio section -->
-    <section id="portfolio" class="section">
-        <div class="container text-center">
-            <h6 class="subtitle">Portfolio</h6>
-            <h6 class="section-title mb-4">Portfolio</h6>
-            <p class="mb-5 pb-4">
-                Explore my works that reflect innovation and creativity in UI/UX, app design, and game development. Each project showcases my dedication to excellence in digital design.
-            </p>
-            
-            <div class="row">
-                <div class="col-sm-4">
-                    <div class="img-wrapper">
-                        <img src="assets/imgs/game.png" alt="">
-                        <div class="overlay">
-                            <div class="overlay-infos">
-                                <h5>GAME Project (DANCE GOO)</h5>
-                                <a href="javascript:void(0)"><i class="ti-zoom-in"></i></a>
-                                <a href="javascript:void(0)"><i class="ti-link"></i></a>
-                            </div>  
-                        </div>
-                    </div>
-                    <div class="img-wrapper">
-                        <img src="assets/imgs/UII.PNG" alt="">
-                        <div class="overlay">
-                            <div class="overlay-infos">
-                                <h5>UI/UX Web LOKARIR</h5>
-                                <a href="javascript:void(0)"><i class="ti-zoom-in"></i></a>
-                                <a href="javascript:void(0)"><i class="ti-link"></i></a>
-                            </div>                              
-                        </div>
-                    </div>                  
-                </div>
-                <div class="col-sm-4">
-                    <div class="img-wrapper">
-                        <img src="assets/imgs/3D.png" alt="">
-                        <div class="overlay">
-                            <div class="overlay-infos">
-                                <h5>3D project (Mmembuat assest 3D)</h5>
-                                <a href="javascript:void(0)"><i class="ti-zoom-in"></i></a>
-                                <a href="javascript:void(0)"><i class="ti-link"></i></a>
-                            </div>  
-                        </div>
-                    </div>
-                    <div class="img-wrapper">
-                        <img src="assets/imgs/COBA2.png" alt="">
-                        <div class="overlay">
-                            <div class="overlay-infos">
-                                <h5>Web Desain (LOKARIR)</h5>
-                                <a href="javascript:void(0)"><i class="ti-zoom-in"></i></a>
-                                <a href="javascript:void(0)"><i class="ti-link"></i></a>
-                            </div>                              
-                        </div>
-                    </div>                  
-                </div>
-                <div class="col-sm-4">
-                    <div class="img-wrapper">
-                        <img src="assets/imgs/folio-5.jpg" alt="">
-                        <div class="overlay">
-                            <div class="overlay-infos">
-                                <h5>Hardware ( Membuat controller dancepad)</h5>
-                                <a href="javascript:void(0)"><i class="ti-zoom-in"></i></a>
-                                <a href="javascript:void(0)"><i class="ti-link"></i></a>
-                            </div>  
-                        </div>
-                    </div>
-                    <div class="img-wrapper">
-                        <img src="assets/imgs/folio-6.jpg" alt="">
-                        <div class="overlay">
-                            <div class="overlay-infos">
-                                <h5>Arduino project (Membuat pendeteksi suhu)</h5>
-                                <a href="javascript:void(0)"><i class="ti-zoom-in"></i></a>
-                                <a href="javascript:void(0)"><i class="ti-link"></i></a>
-                            </div>                              
-                        </div>
-                    </div>                  
-                </div>
-            </div>
+<!-- KONTAK -->
+<section id="kontak" class="contact">
+  <div class="wrap">
+    <span class="eyebrow rv">Kontak</span>
+    <h2 class="rv">Mari bangun sesuatu yang <em>terukur</em> dan indah.</h2>
+    <p class="lead rv">Punya brand yang butuh strategi konten, iklan berbayar, landing page, atau visual 3D? Ceritakan kebutuhannya, aku balas secepatnya.</p>
+    <div class="cta-row rv">
+      <a href="#" class="btn pri" data-wa>WhatsApp</a>
+      <a href="mailto:dickyahidayah12@gmail.com" class="btn ghost">dickyahidayah12@gmail.com</a>
+    </div>
+  </div>
+</section>
+</main>
 
-        </div>
-    </section>
-    <!-- End of portfolio section -->
+<footer><div class="wrap foot">
+  <span>© <span id="yr"></span> Dickya Hidayah Putra · Jakarta Selatan</span>
+  <span style="display:flex;align-items:center;gap:12px">Palet 60·30·10 <span class="pal" aria-hidden="true"><i></i><i></i><i></i></span></span>
+</div></footer>
 
-    <!-- Testmonial Section -->
-    <section id="testmonial" class="section">
-        <div class="container text-center">
-            <h6 class="subtitle">Testmonial</h6>
-            <h6 class="section-title mb-4">What People Say About Me</h6>
-            <p class="mb-5 pb-4">Feedback I often receive upon completing projects. <br> Some from clients such as friends, lecturers, and community members.</p>
+<!-- modal -->
+<div class="modal" id="modal" role="dialog" aria-modal="true" aria-labelledby="m-title" aria-hidden="true">
+  <div class="m-back" data-close></div>
+  <div class="m-card">
+    <button class="m-close" data-close aria-label="Tutup"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
+    <div class="m-media"><div class="m-stage" id="m-stage"></div><div class="m-thumbs" id="m-thumbs"></div></div>
+    <div class="m-info">
+      <span class="cat" id="m-cat"></span>
+      <h3 id="m-title"></h3>
+      <dl id="m-meta"></dl>
+      <p id="m-sum"></p>
+      <ul id="m-pts"></ul>
+      <div class="tags" id="m-tags"></div>
+      <div class="m-nav"><button id="m-prev">← Sebelumnya</button><button id="m-next">Berikutnya →</button></div>
+    </div>
+  </div>
+</div>
+<div id="idx-preview"></div>
 
+<!-- chat -->
+<div id="teaser">Hai! Mau tanya soal pengalaman atau layanan Dickya? Chat di sini.</div>
+<button id="chat-fab" aria-label="Buka chat dengan Dickya" aria-expanded="false">
+  <svg class="c" aria-hidden="true"><use href="#i-wa"/></svg>
+  <svg class="x" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg>
+  <span class="dot">1</span>
+</button>
+<section id="chat" aria-label="Chat dengan Dickya Hidayah Putra" style="padding:0">
+  <div class="ch-head">
+    <button class="ch-back" id="ch-back" aria-label="Tutup chat"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M11 6l-6 6 6 6"/></svg></button>
+    <div class="ch-av" id="ch-av"><span>DH</span></div>
+    <div class="ch-who"><b>Dickya Hidayah Putra</b><small>online</small></div>
+    <a class="ch-wa" id="ch-wa" target="_blank" rel="noopener" aria-label="Buka di WhatsApp"><svg aria-hidden="true"><use href="#i-wa"/></svg></a>
+  </div>
+  <div class="ch-body" id="ch-body" aria-live="polite"></div>
+  <div class="ch-q" id="ch-q"></div>
+  <form class="ch-in" id="ch-form"><input id="ch-input" type="text" placeholder="Ketik pesan" autocomplete="off" aria-label="Ketik pesan"><button type="submit" aria-label="Kirim"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M3.4 20.4 21 12 3.4 3.6 3.3 10l12.6 2-12.6 2z"/></svg></button></form>
+</section>
 
-            <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
-                <ol class="carousel-indicators">
-                    <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
-                    <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
-                    <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
-                </ol>
-                <div class="carousel-inner">
-                    <div class="carousel-item active">
-                        <div class="card testmonial-card border">
-                            <div class="card-body">
-                                <img src="assets/imgs/avatar-1.jpg" alt="">
-                                <p>Gelo...Menyala abgku (emote api)</p>
-                                <h1 class="title">Emma Watson</h1>
-                                <h1 class="subtitle">Game Designer</h1>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="carousel-item">
-                        <div class="card testmonial-card border">
-                            <div class="card-body">
-                                <img src="assets/imgs/avatar-2.jpg" alt="">
-                                <p>Keren,cocok kerja di NASA</p>
-                                <h1 class="title">Andrew</h1>
-                                <h1 class="subtitle">Web Designer</h1>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="carousel-item">
-                        <div class="card testmonial-card border">
-                            <div class="card-body">
-                                <img src="assets/imgs/avatar-3.jpg" alt="">
-                                <p>Hengker</p>
-                                <h1 class="title">Michael Jordan</h1>
-                                <h1 class="subtitle">Mobile Developer</h1>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-    <!-- End of testmonial section -->
+<!-- open-source libs: Three.js (MIT), supabase-js (MIT) -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
+<script>
+/* =====================================================================
+   KONFIGURASI — isi bagian ini setelah project Supabase siap.
+   Kosongkan SUPABASE_URL / KEY bila ingin memakai data bawaan (tanpa foto/video).
+   ===================================================================== */
+const CONFIG = {
+  SUPABASE_URL: 'https://bhvlmvxzskjxajqwnlqa.supabase.co',        // contoh: 'https://abcdxyz.supabase.co'
+  SUPABASE_ANON_KEY: 'sb_publishable_39nV1VVsnQZS7h9miQE6Cg_LmyfzOHj',   // anon / publishable key (aman untuk frontend)
+  TABLE: 'projects',
+  BUCKET: 'portfolio',
+  PROFILE_PHOTO: '',       // URL foto profil; kosong = otomatis cari <bucket>/profile.jpg
+  WHATSAPP: '6287723744842',
+  EMAIL: 'dickyahidayah12@gmail.com'
+};
 
-    <!-- Blog Section -->
-    <section id="blog" class="section">
-        <div class="container text-center">
-            <h6 class="subtitle">My Blogs</h6>
-            <h6 class="section-title mb-4">Latest News</h6>
-            <p class="mb-5 pb-4">Recently completed projects <br> Some projects were done individually, while others were done collaboratively with a team.</p>
+const CATS = [
+  {key:'commerce', label:'Marketplace & Live', note:'Shopee, TikTok Shop, live commerce, KOL, dan layanan pelanggan.'},
+  {key:'ads',      label:'Performance Ads',    note:'Kampanye berbayar Meta, TikTok, dan Shopee yang dioptimalkan untuk hasil.'},
+  {key:'social',   label:'Social Media',       note:'Pengelolaan konten dan publikasi untuk klien freelance DHP CREATive.'},
+  {key:'campaign', label:'Campaign & Event',   note:'Kampanye flagship, program referral, pameran, dan pelatihan.'},
+  {key:'web',      label:'Web & UI/UX',        note:'Website, landing page, blog SEO, dan desain antarmuka.'},
+  {key:'visual3d', label:'Visual & 3D',        note:'Visual 3D Blender, animasi, dan konten AI untuk materi promosi.'}
+];
+const catLabel = k => (CATS.find(c=>c.key===k)||{}).label || k;
 
-            <div class="row text-left">
-                <div class="col-md-4">
-                    <div class="card border mb-4">
-                        <img src="assets/imgs/blog-1.jpg" alt="" class="card-img-top w-100">
-                        <div class="card-body">
-                            <h5 class="card-title">Designe for Everyone</h5>
-                            <div class="post-details">
-                                <a href="javascript:void(0)">Posted By: Admin</a>
-                                <a href="javascript:void(0)"><i class="ti-thumb-up"></i> 456</a>
-                                <a href="javascript:void(0)"><i class="ti-comment"></i> 123</a>
-                            </div>
-                            <p>Desain UI/UX untuk Web,mobile,dan game.</p>
-                            <a href="javascript:void(0)">Read More..</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="card border mb-4">
-                        <img src="assets/imgs/blog-2.jpg" alt="" class="card-img-top w-100">
-                        <div class="card-body">
-                            <h5 class="card-title">Web Layouts</h5>
-                            <div class="post-details">
-                                <a href="javascript:void(0)">Posted By: Admin</a>
-                                <a href="javascript:void(0)"><i class="ti-thumb-up"></i> 456</a>
-                                <a href="javascript:void(0)"><i class="ti-comment"></i> 123</a>
-                            </div>
-                            <p>Membuat tampilan web yang interaktif,dan mengerjakan frontend dan backend.</p>
-                            <a href="javascript:void(0)">Read More..</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="card border mb-4">
-                        <img src="assets/imgs/blog-3.jpg" alt="" class="card-img-top w-100">
-                        <div class="card-body">
-                            <h5 class="card-title">Bootstrap Framework</h5>
-                            <div class="post-details">
-                                <a href="javascript:void(0)">Posted By: Admin</a>
-                                <a href="javascript:void(0)"><i class="ti-thumb-up"></i> 456</a>
-                                <a href="javascript:void(0)"><i class="ti-comment"></i> 123</a>
-                            </div>
-                            <p>.</p>
-                            <a href="javascript:void(0)">Read More..</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+const DATA = [
+ {
+  "id": "multichannel-confetti",
+  "sort": 1,
+  "title": "Strategi Multi-Channel Confetti",
+  "category": "commerce",
+  "client": "Confetti Bedsheet",
+  "year": "Mei 2025 — kini",
+  "role": "Marketing Manager",
+  "summary": "Memegang strategi pemasaran end-to-end di Shopee, TikTok Shop, dan media sosial, dari perencanaan dan eksekusi kampanye sampai pelaporan performa ke manajemen.",
+  "points": [
+   "Campaign bulanan untuk seluruh kanal online agar funnel penjualan konsisten sepanjang tahun",
+   "Content plan berdasarkan tahap funnel TOFU, MOFU, dan BOFU",
+   "Laporan performa bulanan lengkap dengan rekomendasi strategis"
+  ],
+  "tags": [
+   "Shopee",
+   "TikTok Shop",
+   "Monthly Campaign",
+   "Funnel"
+  ]
+ },
+ {
+  "id": "live-commerce",
+  "sort": 2,
+  "title": "Live Commerce TikTok & Shopee",
+  "category": "commerce",
+  "client": "Confetti Bedsheet",
+  "year": "Mei 2025 — kini",
+  "role": "Marketing Manager",
+  "summary": "Mengelola tim host live di TikTok Live dan Shopee Live, dari jadwal dan rundown sampai peninjauan analitik tiap sesi untuk menaikkan konversi.",
+  "points": [
+   "Menyusun jadwal live dan rundown acara",
+   "Meninjau analitik sesi untuk meningkatkan konversi",
+   "Menetapkan KPI dan memberi arahan ke host live"
+  ],
+  "tags": [
+   "TikTok Live",
+   "Shopee Live",
+   "Rundown",
+   "KPI"
+  ]
+ },
+ {
+  "id": "afiliasi-kol",
+  "sort": 3,
+  "title": "Program Afiliasi & KOL",
+  "category": "commerce",
+  "client": "Confetti Bedsheet",
+  "year": "Mei 2025 — kini",
+  "role": "Marketing Manager",
+  "summary": "Merancang dan menjalankan program afiliasi serta kerja sama KOL, mulai dari mencari partner, briefing kreator, sampai peluncuran kampanye lintas platform.",
+  "points": [
+   "Sourcing KOL dan manajemen kerja sama",
+   "Briefing kreator agar pesan brand tetap konsisten",
+   "Koordinasi peluncuran kampanye lintas platform"
+  ],
+  "tags": [
+   "KOL",
+   "Afiliasi",
+   "Briefing",
+   "Lintas Platform"
+  ]
+ },
+ {
+  "id": "malika-ai-chat",
+  "sort": 4,
+  "title": "Malika — AI Chat & Alur Eskalasi CS",
+  "category": "commerce",
+  "client": "Confetti Bedsheet",
+  "year": "2025 — kini",
+  "role": "Marketing Manager",
+  "summary": "Mengelola AI chat Malika dan mengoordinasikan alur eskalasinya ke tim CS supaya respons pelanggan lebih cepat dan tepat sasaran.",
+  "points": [
+   "Pengelolaan AI chat Malika",
+   "Alur eskalasi ke tim customer service",
+   "Respons pelanggan lebih cepat dan tepat sasaran"
+  ],
+  "tags": [
+   "AI Chat",
+   "Customer Service",
+   "Workflow"
+  ]
+ },
+ {
+  "id": "paid-ads-confetti",
+  "sort": 5,
+  "title": "Meta, TikTok & Shopee Ads",
+  "category": "ads",
+  "client": "Confetti Bedsheet",
+  "year": "Mei 2025 — kini",
+  "role": "Marketing Manager",
+  "summary": "Merencanakan dan mengoptimalkan kampanye berbayar di tiga platform, terus menyempurnakan audiens, kreatif, dan bidding untuk meningkatkan ROAS.",
+  "points": [
+   "Setup kampanye, optimasi, dan pelaporan",
+   "Penyempurnaan audiens, kreatif, dan bidding",
+   "Arahan materi konten ads agar sesuai target audiens"
+  ],
+  "tags": [
+   "Meta Ads",
+   "TikTok Ads",
+   "Shopee Ads",
+   "ROAS"
+  ]
+ },
+ {
+  "id": "imlek-valentine-ssd",
+  "sort": 6,
+  "title": "Kampanye Imlek & Valentine SSD",
+  "category": "ads",
+  "client": "Ceratech",
+  "year": "Januari 2025",
+  "role": "Creative Manager",
+  "summary": "Kampanye promo yang dioptimalkan lewat Meta dan TikTok Ads untuk mendorong traffic marketplace dan kunjungan ke cabang.",
+  "points": [
+   "Strategi harga dan promosi",
+   "Konsep kreatif Reels dan poster, serta dekorasi cabang",
+   "Optimasi targeting media berbayar untuk jangkauan dan konversi marketplace"
+  ],
+  "tags": [
+   "Meta Ads",
+   "TikTok Ads",
+   "Reels",
+   "Poster"
+  ]
+ },
+ {
+  "id": "social-gintin-g",
+  "sort": 7,
+  "title": "Gintin G Institute",
+  "category": "social",
+  "client": "DHP CREATive × Gintin G Institute",
+  "year": "2025",
+  "role": "Social Media Manager (Freelance)",
+  "summary": "Social media manager freelance untuk lembaga edukasi, dengan content plan yang berfokus pada peningkatan awareness brand secara online.",
+  "points": [
+   "Menyusun content plan awareness",
+   "Pengelolaan publikasi media sosial"
+  ],
+  "tags": [
+   "Edukasi",
+   "Content Plan",
+   "Awareness"
+  ]
+ },
+ {
+  "id": "social-rosa-de-padel",
+  "sort": 8,
+  "title": "Rosa De Padel",
+  "category": "social",
+  "client": "DHP CREATive × Rosa De Padel",
+  "year": "2025",
+  "role": "Social Media Manager (Freelance)",
+  "summary": "Mengelola strategi konten dan publikasi media sosial untuk brand olahraga padel demi membangun brand awareness.",
+  "points": [
+   "Strategi konten media sosial",
+   "Publikasi dan pengelolaan akun"
+  ],
+  "tags": [
+   "Olahraga",
+   "Padel",
+   "Social Media"
+  ]
+ },
+ {
+  "id": "social-lekooh",
+  "sort": 9,
+  "title": "Lekooh",
+  "category": "social",
+  "client": "DHP CREATive × Lekooh",
+  "year": "2025",
+  "role": "Social Media Manager (Freelance)",
+  "summary": "Perencanaan dan eksekusi konten media sosial untuk brand food & beverage agar awareness terus tumbuh.",
+  "points": [
+   "Perencanaan konten",
+   "Eksekusi dan publikasi konten"
+  ],
+  "tags": [
+   "F&B",
+   "Content Plan",
+   "Social Media"
+  ]
+ },
+ {
+  "id": "social-dervel",
+  "sort": 10,
+  "title": "Dervel Dermatology",
+  "category": "social",
+  "client": "DHP CREATive × Dervel Dermatology",
+  "year": "2025",
+  "role": "Social Media Manager (Freelance)",
+  "summary": "Mengelola strategi konten dan publikasi media sosial untuk klinik dermatologi guna meningkatkan awareness klinik.",
+  "points": [
+   "Strategi konten klinik kesehatan dan kecantikan",
+   "Publikasi media sosial"
+  ],
+  "tags": [
+   "Klinik",
+   "Kesehatan & Kecantikan",
+   "Social Media"
+  ]
+ },
+ {
+  "id": "cerafest",
+  "sort": 11,
+  "title": "CeraFest",
+  "category": "campaign",
+  "client": "Ceratech",
+  "year": "Des 2024 — Feb 2025",
+  "role": "Creative Manager",
+  "summary": "Kampanye event flagship multi-cabang. Memegang perencanaan sampai eksekusi: konten promosi, rollout cabang, rundown, dan pengumuman pemenang.",
+  "points": [
+   "Perencanaan hingga eksekusi lintas cabang",
+   "Konten promosi, rundown, dan pengumuman pemenang",
+   "Strategi komunikasi visual dan kampanye digital yang terintegrasi"
+  ],
+  "tags": [
+   "Event",
+   "Multi-Cabang",
+   "Rundown",
+   "Visual"
+  ]
+ },
+ {
+  "id": "friend-referral",
+  "sort": 12,
+  "title": "Program Friend Referral",
+  "category": "campaign",
+  "client": "Ceratech",
+  "year": "Mar 2025 — berlanjut",
+  "role": "Creative Manager",
+  "summary": "Program referral dan keanggotaan berkelanjutan, lengkap dengan mekanisme referral, sistem kartu anggota, dan acara promosi pendukung.",
+  "points": [
+   "Merancang mekanisme referral dan sistem kartu anggota",
+   "Kolaborasi dengan tim desain untuk UI website dan kartu keanggotaan"
+  ],
+  "tags": [
+   "Referral",
+   "Membership",
+   "UI Website"
+  ]
+ },
+ {
+  "id": "inacraft-2025",
+  "sort": 13,
+  "title": "Partisipasi Inacraft 2025",
+  "category": "campaign",
+  "client": "Confetti Bedsheet",
+  "year": "2025",
+  "role": "Marketing Manager",
+  "summary": "Kampanye awareness online untuk mendukung partisipasi Confetti di pameran Inacraft 2025.",
+  "points": [
+   "Mengelola strategi penyebaran awareness secara online",
+   "Mencari dan menyeleksi kandidat kolaborasi untuk memperluas jangkauan"
+  ],
+  "tags": [
+   "Pameran",
+   "Awareness",
+   "Collab"
+  ]
+ },
+ {
+  "id": "pelatihan-reseller",
+  "sort": 14,
+  "title": "Program Pelatihan Reseller & Agent",
+  "category": "campaign",
+  "client": "Confetti Bedsheet",
+  "year": "2025 — kini",
+  "role": "Marketing Manager",
+  "summary": "Merancang program pelatihan reseller dan agent, serta memimpin sesi pengetahuan produk dan teknik penjualan setiap dua bulan.",
+  "points": [
+   "Kurikulum pengetahuan produk dan teknik penjualan",
+   "Sesi pelatihan rutin setiap dua bulan"
+  ],
+  "tags": [
+   "Training",
+   "Reseller",
+   "Sales"
+  ]
+ },
+ {
+  "id": "redesain-confettibedsheet",
+  "sort": 15,
+  "title": "Redesain confettibedsheet.id",
+  "category": "web",
+  "client": "Confetti Bedsheet",
+  "year": "Mei 2026",
+  "role": "Marketing Manager",
+  "summary": "Merancang ulang tampilan, alur navigasi, dan struktur konten website utama Confetti Bedsheet untuk pengalaman pengguna yang lebih baik.",
+  "points": [
+   "Tampilan, navigasi, dan struktur konten dirancang ulang",
+   "Desain baru diselaraskan dengan brand guideline dan kebutuhan konversi penjualan online"
+  ],
+  "tags": [
+   "UI/UX",
+   "WordPress",
+   "Konversi",
+   "Brand Guideline"
+  ]
+ },
+ {
+  "id": "landing-b2b",
+  "sort": 16,
+  "title": "Landing Page Corporate B2B",
+  "category": "web",
+  "client": "Confetti Bedsheet",
+  "year": "September 2025",
+  "role": "Marketing Manager",
+  "summary": "Proyek WordPress yang dipimpin tim marketing untuk menarik mitra korporat.",
+  "points": [
+   "Strategi konten dan arsitektur informasi untuk menyajikan nilai kerja sama dengan jelas",
+   "Pengawasan pengembangan UI/UX dan WordPress responsif agar presentasi brand profesional"
+  ],
+  "tags": [
+   "WordPress",
+   "B2B",
+   "Arsitektur Informasi",
+   "Responsif"
+  ]
+ },
+ {
+  "id": "blog-seo",
+  "sort": 17,
+  "title": "Blog & Content Marketing SEO",
+  "category": "web",
+  "client": "Confetti Bedsheet",
+  "year": "Mei 2025 — kini",
+  "role": "Marketing Manager",
+  "summary": "Mesin konten berbasis WordPress untuk SEO dan visibilitas brand.",
+  "points": [
+   "Struktur konten berbasis SEO dan alur editorial",
+   "Koordinasi tim konten agar publikasi konsisten dan audiens terus bertumbuh"
+  ],
+  "tags": [
+   "WordPress",
+   "SEO",
+   "Editorial"
+  ]
+ },
+ {
+  "id": "react-msib",
+  "sort": 18,
+  "title": "Website Responsif React JS",
+  "category": "web",
+  "client": "PT Kinema Systrans Multimedia (Infinite Studios)",
+  "year": "Feb — Jun 2024",
+  "role": "UI/UX & Web Development Intern (MSIB)",
+  "summary": "Merancang dan mengembangkan website responsif dengan React JS, berfokus pada antarmuka yang berpusat pada pengguna.",
+  "points": [
+   "Desain dan pengembangan website dengan React JS",
+   "Riset pengguna untuk mendukung keputusan produk"
+  ],
+  "tags": [
+   "React JS",
+   "UI/UX",
+   "User Research"
+  ]
+ },
+ {
+  "id": "studio-3d-confetti",
+  "sort": 19,
+  "title": "Proyek Desain 3D Studio",
+  "category": "visual3d",
+  "client": "Confetti Bedsheet",
+  "year": "September 2025",
+  "role": "Marketing Manager",
+  "summary": "Proyek kreatif lintas tim yang menyelaraskan identitas brand dengan produksi visual.",
+  "points": [
+   "Memimpin proyek lintas fungsi desain, branding, dan pemasaran",
+   "Visualisasi 3D Blender yang diintegrasikan ke branding sosial dan korporat"
+  ],
+  "tags": [
+   "Blender",
+   "3D",
+   "Branding"
+  ]
+ },
+ {
+  "id": "konten-ai",
+  "sort": 20,
+  "title": "Produksi Konten AI Video & Foto",
+  "category": "visual3d",
+  "client": "Confetti Bedsheet",
+  "year": "2025 — kini",
+  "role": "Marketing Manager",
+  "summary": "Memproduksi konten AI berupa video dan foto untuk kebutuhan promosi dan materi iklan secara lebih efisien.",
+  "points": [
+   "Video dan foto AI untuk materi ads",
+   "Selaras dengan pesan kreatif dan target audiens"
+  ],
+  "tags": [
+   "AI Video",
+   "AI Foto",
+   "Ads Creative"
+  ]
+ },
+ {
+  "id": "anindhaloka-3d",
+  "sort": 21,
+  "title": "Animasi Lingkungan 3D & Audio-Visual Acara",
+  "category": "visual3d",
+  "client": "Anindhaloka",
+  "year": "Jul — Nov 2024",
+  "role": "Marketing & Communication Intern",
+  "summary": "Menghasilkan animasi lingkungan 3D dengan Blender dan dukungan audio-visual acara untuk aktivasi perusahaan, plus materi komunikasi visual kampanye kemitraan.",
+  "points": [
+   "Animasi lingkungan 3D (Blender)",
+   "Dukungan audio-visual acara",
+   "Konten kreatif untuk kampanye kemitraan dan promosi"
+  ],
+  "tags": [
+   "Blender",
+   "Animasi 3D",
+   "Audio-Visual",
+   "Event"
+  ]
+ }
+];
 
-    <!-- Hire me section -->
-    <section class="bg-gray p-0 section">
-        <div class="container">
-            <div class="card bg-primary">
-                <div class="card-body text-light">
-                    <div class="row align-items-center">
-                        <div class="col-sm-9 text-center text-sm-left">
-                            <h5 class="mt-3">Hire Me For Your Project</h5>
-                            <p class="mb-3">Jika tertarik denganku dan project yang aku buat.</p>
-                        </div>
-                        <div class="col-sm-3 text-center text-sm-right">
-                            <button class="btn btn-light rounded">Hire Me!</button>
-                        </div>
-                    </div>
-                </div> 
-            </div>
-        </div>
-    </section>      
-    <!-- End od Hire me section. -->
+const $ = (s,r=document)=>r.querySelector(s), $$ = (s,r=document)=>[...r.querySelectorAll(s)];
+const reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
+const esc = s => String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const arr = v => { if(Array.isArray(v)) return v; if(typeof v==='string'){ try{ const j=JSON.parse(v); return Array.isArray(j)?j:[] }catch{ return [] } } return [] };
 
-    <!-- Contact Section -->
-    <section id="contact" class="position-relative section">
-        <div class="container text-center">
-            <h6 class="subtitle">Contact</h6>
-            <h6 class="section-title mb-4">Get In Touch With Me</h6>
-            <p class="mb-5 pb-4">Hubungi aku dibawah ini. <br> Matur suwun.</p>
+let PROJECTS = [], filter = 'all', view = 'grid', current = -1, mediaIdx = 0;
+const waLink = (t='Halo Dickya, aku lihat portofoliomu dan ingin berdiskusi.') => `https://wa.me/${CONFIG.WHATSAPP}?text=${encodeURIComponent(t)}`;
 
-            <div class="contact text-left">
-                <div class="form">
-                    <h6 class="subtitle">Available 24/7</h6>
-                    <h6 class="section-title mb-4">Get In Touch</h6>
-                    <form>
-                        <div class="form-group">
-                            <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email" required>
-                        </div>
-                        <div class="form-group">
-                            <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password" required>
-                        </div>
-                        <div class="form-group">
-                            <textarea name="contact-message" id="" cols="30" rows="5" class="form-control" placeholder="Message"></textarea>
-                        </div>
-                        <button type="submit" class="btn btn-primary btn-block rounded w-lg">Send Message</button>
-                    </form>
-                </div>
-                <div class="contact-infos">
-                    <div class="item">
-                        <i class="ti-location-pin"></i>
-                        <div class="">
-                            <h5>Location</h5>
-                            <p> Batam,Indonesia</p>
-                        </div>                          
-                    </div>
-                    <div class="item">
-                        <i class="ti-mobile"></i>
-                        <div>
-                            <h5>Phone Number</h5>
-                            <p>(+62) 087723744842</p>
-                        </div>                          
-                    </div>
-                    <div class="item">
-                        <i class="ti-email"></i>
-                        <div class="mb-0">
-                            <h5>Email Address</h5>
-                            <p>dickyahidayah12@gmail.com</p>
-                        </div>
-                    </div>
-                </div>                  
-            </div>
-        </div>  
-        <div id="map">
-            <iframe src="https://snazzymaps.com/embed/61257"></iframe>
-        </div>      
-    </section>
-    <!-- End of Contact Section -->
+/* ---------- data ---------- */
+function normalize(p){
+  return { id:p.id, sort:p.sort??0, title:p.title, category:p.category, client:p.client||'', year:p.year||'', role:p.role||'', summary:p.summary||'',
+    points:arr(p.points), tags:arr(p.tags), media:arr(p.media).filter(m=>m&&m.url) };
+}
+async function loadProjects(){
+  if(CONFIG.SUPABASE_URL && CONFIG.SUPABASE_ANON_KEY && window.supabase){
+    try{
+      const sb = window.supabase.createClient(CONFIG.SUPABASE_URL, CONFIG.SUPABASE_ANON_KEY);
+      const {data,error} = await sb.from(CONFIG.TABLE).select('*').order('sort',{ascending:true});
+      if(error) throw error;
+      if(data && data.length) return data.map(normalize);
+    }catch(e){ console.warn('Supabase gagal dimuat, memakai data bawaan:', e.message||e) }
+  }
+  return DATA.map(normalize);
+}
 
-    <!-- Page Footer -->
-    <footer class="page-footer">
-        <div class="container">
-            <div class="row align-items-center">
-                <div class="col-sm-6">
-                    <p>Copyright <script>document.write(new Date().getFullYear())</script> &copy; <a href="http://www.devcrud.com" target="_blank">DICKYAHIDAYAH</a></p>
-                </div>
-                <div class="col-sm-6">
-                    <div class="socials">
-                        <a class="social-item" href="https://www.facebook.com/diki.hidayat.7311" target="_blank" rel="noopener noreferrer"><i class="ti-facebook"></i></a>
-                        <a class="social-item" href="mailto:dickyahidayah12@gmail.com?subject=Permintaan Informasi&body=Hai.. apakah anda ada waktu?" target="_blank"><i class="ti-google"></i></a>
-                        <a class="social-item" href="https://github.com/DickyaHidayah" target="_blank" rel="noopener noreferrer"><i class="ti-github"></i></a>
-                        <a class="social-item" href="javascript:void(0)" onclick="alert('Maaf, saat ini pengguna tidak menggunakan sosial media ini.');"><i class="ti-twitter"></i></a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </footer> 
-    <!-- End of page footer -->
-	
-	<!-- core  -->
-    <script src="assets/vendors/jquery/jquery-3.4.1.js"></script>
-    <script src="assets/vendors/bootstrap/bootstrap.bundle.js"></script>
-    <!-- bootstrap 3 affix -->
-	<script src="assets/vendors/bootstrap/bootstrap.affix.js"></script>
+/* ---------- cover ---------- */
+const PAL = [['#1E4F9C','#7FB4F2'],['#0F2F63','#3478D4'],['#3478D4','#FFC987'],['#13285A','#FF9A62'],['#1E4F9C','#FF6F55'],['#0A1530','#3478D4']];
+function genCover(i){
+  const [a,b] = PAL[i%PAL.length]; const cx = 40 + (i*23)%120;
+  const rings = [...Array(8)].map((_,k)=>`<circle cx="${cx}" cy="100" r="${12+k*15}"/>`).join('');
+  return `<div class="gen" style="--a:${a};--b:${b};--rot:${(i*41)%90}deg"><svg viewBox="0 0 200 200" preserveAspectRatio="xMidYMid slice"><g fill="none" stroke="rgba(255,255,255,.26)" stroke-width=".6">${rings}</g></svg><span class="gen-n">${String(i+1).padStart(2,'0')}</span></div>`;
+}
+function coverHTML(p,i){
+  const m = p.media[0];
+  if(m && m.type==='video') return `<video src="${esc(m.url)}#t=0.6" muted playsinline preload="metadata"></video>`;
+  if(m) return `<img src="${esc(m.url)}" alt="${esc(p.title)}" loading="lazy">`;
+  return genCover(i);
+}
+const hasVideo = p => p.media.some(m=>m.type==='video');
+const globalIdx = p => PROJECTS.indexOf(p);
 
-    <!-- steller js -->
-    <script src="assets/js/HIDAYAH.js"></script>
+/* ---------- render ---------- */
+function visible(){ return filter==='all' ? PROJECTS : PROJECTS.filter(p=>p.category===filter) }
+function renderChips(){
+  const all = [{key:'all',label:'Semua'},...CATS];
+  $('#chips').innerHTML = all.map(c=>{
+    const n = c.key==='all'?PROJECTS.length:PROJECTS.filter(p=>p.category===c.key).length;
+    return `<button class="chip" data-f="${c.key}" aria-pressed="${filter===c.key}">${esc(c.label)} <small>${n}</small></button>`;
+  }).join('');
+  $$('#chips .chip').forEach(b=>b.onclick=()=>{filter=b.dataset.f;renderChips();renderWork()});
+}
+function renderWork(){
+  const list = visible();
+  const note = filter==='all' ? `Menampilkan ${list.length} proyek dari semua kategori.` : (CATS.find(c=>c.key===filter)||{}).note;
+  $('#catnote').textContent = note || '';
+  const grid=$('#grid'), idx=$('#index');
+  if(!list.length){ grid.innerHTML=idx.innerHTML='<p class="empty">Belum ada proyek di kategori ini.</p>'; return }
+  grid.innerHTML = list.map((p,i)=>`
+    <button class="card tilt" style="--i:${i}" data-id="${esc(p.id)}" aria-label="Buka proyek ${esc(p.title)}">
+      <div class="thumb">${coverHTML(p,globalIdx(p))}<span class="badge">${esc(catLabel(p.category))}</span>${hasVideo(p)?'<span class="vid-dot"><svg viewBox="0 0 10 12" fill="currentColor"><path d="M0 0l10 6-10 6z"/></svg></span>':''}</div>
+      <div class="card-b"><span class="meta">${esc(p.client)} · ${esc(p.year)}</span><h3>${esc(p.title)}</h3><p>${esc(p.summary)}</p><span class="more">Lihat detail <i>→</i></span></div>
+    </button>`).join('');
+  idx.innerHTML = list.map((p,i)=>`
+    <button class="row" style="--i:${i}" data-id="${esc(p.id)}" data-gi="${globalIdx(p)}">
+      <span class="no">${String(i+1).padStart(2,'0')}</span><span class="tt">${esc(p.title)}</span><span class="ct">${esc(catLabel(p.category))}</span><span class="yr">${esc(p.year)}</span>
+      <span class="ar"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+    </button>`).join('');
+  $$('.card,.row').forEach(el=>el.onclick=()=>openProject(el.dataset.id));
+  bindTilt($('#grid')); bindPreview(); bindCursorTargets();
+}
+function setView(v){
+  view=v; $('#grid').classList.toggle('off',v==='index'); $('#index').classList.toggle('on',v==='index');
+  $('#v-grid').setAttribute('aria-pressed',v==='grid'); $('#v-index').setAttribute('aria-pressed',v==='index');
+}
+$('#v-grid').onclick=()=>setView('grid'); $('#v-index').onclick=()=>setView('index');
 
+/* floating preview untuk tampilan indeks */
+function bindPreview(){
+  const pv=$('#idx-preview'); if(matchMedia('(hover:none)').matches) return;
+  $$('.row').forEach(r=>{
+    r.onpointerenter=()=>{ const p=PROJECTS[+r.dataset.gi]; pv.innerHTML=coverHTML(p,+r.dataset.gi); pv.classList.add('on'); const v=pv.querySelector('video'); v&&v.play().catch(()=>{}) };
+    r.onpointerleave=()=>pv.classList.remove('on');
+    r.onpointermove=e=>{ pv.style.transform=`translate(${Math.min(e.clientX+28,innerWidth-320)}px,${e.clientY-100}px) scale(1) rotate(${((e.clientX/innerWidth)-.5)*5}deg)` };
+  });
+}
+
+/* ---------- modal ---------- */
+const modal=$('#modal');
+function openProject(id){
+  const i = PROJECTS.findIndex(p=>p.id===id); if(i<0) return; current=i; fillModal();
+  modal.classList.add('open'); modal.setAttribute('aria-hidden','false'); document.body.style.overflow='hidden';
+  setTimeout(()=>$('.m-close',modal).focus(),50);
+}
+function closeModal(){ modal.classList.remove('open'); modal.setAttribute('aria-hidden','true'); document.body.style.overflow=''; $$('#m-stage video').forEach(v=>v.pause()) }
+function fillModal(){
+  const p=PROJECTS[current]; mediaIdx=0;
+  $('#m-cat').textContent=catLabel(p.category); $('#m-title').textContent=p.title;
+  $('#m-meta').innerHTML=[['Klien / brand',p.client],['Periode',p.year],['Peran',p.role]].filter(r=>r[1]).map(r=>`<dt>${r[0]}</dt><dd>${esc(r[1])}</dd>`).join('');
+  $('#m-sum').textContent=p.summary;
+  $('#m-pts').innerHTML=p.points.map(x=>`<li>${esc(x)}</li>`).join('');
+  $('#m-tags').innerHTML=p.tags.map(t=>`<span>${esc(t)}</span>`).join('');
+  showMedia(0);
+}
+function showMedia(k){
+  const p=PROJECTS[current]; mediaIdx=k; const st=$('#m-stage'), th=$('#m-thumbs');
+  const m=p.media[k];
+  if(!m){ st.innerHTML=genCover(current)+'<span class="note">Foto &amp; video proyek ini menyusul</span>'; th.innerHTML=''; return }
+  st.innerHTML = m.type==='video' ? `<video src="${esc(m.url)}" controls playsinline autoplay muted loop></video>` : `<img src="${esc(m.url)}" alt="${esc(m.caption||p.title)}">`;
+  if(m.caption) st.insertAdjacentHTML('beforeend',`<span class="note">${esc(m.caption)}</span>`);
+  th.innerHTML = p.media.length>1 ? p.media.map((x,j)=>`<button aria-label="Media ${j+1}" aria-current="${j===k}" data-k="${j}">${x.type==='video'?`<video src="${esc(x.url)}#t=0.5" muted preload="metadata"></video>`:`<img src="${esc(x.url)}" alt="" loading="lazy">`}</button>`).join('') : '';
+  $$('button',th).forEach(b=>b.onclick=()=>showMedia(+b.dataset.k));
+}
+function stepProject(d){
+  const list=visible(); let pos=list.indexOf(PROJECTS[current]); if(pos<0) pos=0;
+  const next=list[(pos+d+list.length)%list.length]; current=PROJECTS.indexOf(next); fillModal(); $('.m-card',modal).scrollTop=0;
+}
+$$('[data-close]',modal).forEach(el=>el.onclick=closeModal);
+$('#m-prev').onclick=()=>stepProject(-1); $('#m-next').onclick=()=>stepProject(1);
+addEventListener('keydown',e=>{
+  if(modal.classList.contains('open')){
+    if(e.key==='Escape') closeModal();
+    if(e.key==='ArrowRight') stepProject(1);
+    if(e.key==='ArrowLeft') stepProject(-1);
+  } else if(e.key==='Escape') toggleChat(false);
+});
+
+/* ---------- tilt 3D (CSS) ---------- */
+function bindTilt(root=document){
+  if(reduced||matchMedia('(hover:none)').matches) return;
+  $$('.tilt',root).forEach(el=>{
+    if(el._t) return; el._t=1;
+    el.addEventListener('pointermove',e=>{
+      const r=el.getBoundingClientRect(), x=(e.clientX-r.left)/r.width-.5, y=(e.clientY-r.top)/r.height-.5;
+      el.style.setProperty('--rx',(-y*7)+'deg'); el.style.setProperty('--ry',(x*9)+'deg');
+      el.style.setProperty('--mx',(x+.5)*100+'%'); el.style.setProperty('--my',(y+.5)*100+'%');
+    });
+    el.addEventListener('pointerleave',()=>{el.style.setProperty('--rx','0deg');el.style.setProperty('--ry','0deg')});
+  });
+}
+
+/* ---------- kursor ---------- */
+const cur=$('#cur');
+if(!matchMedia('(hover:none)').matches && !reduced){
+  let tx=0,ty=0,x=0,y=0;
+  addEventListener('pointermove',e=>{tx=e.clientX;ty=e.clientY;cur.classList.add('on')});
+  document.addEventListener('pointerleave',()=>cur.classList.remove('on'));
+  (function loop(){ x+=(tx-x)*.18; y+=(ty-y)*.18; cur.style.transform=`translate(${x}px,${y}px)`; requestAnimationFrame(loop) })();
+}
+function bindCursorTargets(){
+  $$('a,button,.card,.row').forEach(el=>{ if(el._c) return; el._c=1; el.addEventListener('pointerenter',()=>cur.classList.add('big')); el.addEventListener('pointerleave',()=>cur.classList.remove('big')) });
+}
+
+/* ---------- konten statis ---------- */
+const ICON = {
+  chart:'<path d="M4 20V10M10 20V4M16 20v-7M22 20H2"/>', cart:'<path d="M3 4h2l2.4 11h10l2-8H6.5"/><circle cx="9" cy="19" r="1.5"/><circle cx="17" cy="19" r="1.5"/>',
+  team:'<circle cx="9" cy="8" r="3.2"/><path d="M3 20c0-3.5 2.7-6 6-6s6 2.5 6 6"/><circle cx="17.5" cy="9" r="2.4"/><path d="M17 14c2.6.2 4.5 2.2 4.5 5"/>',
+  star:'<path d="M12 3l2.7 5.6 6.1.9-4.4 4.3 1 6.1L12 17l-5.4 2.9 1-6.1L3.2 9.5l6.1-.9z"/>',
+  chat:'<path d="M20 12a8 8 0 0 1-11.5 7.2L4 20.5l1.4-4.4A8 8 0 1 1 20 12z"/>',
+  code:'<path d="M8 8l-5 4 5 4M16 8l5 4-5 4M14 5l-4 14"/>'
+};
+const SKILLS = [
+ ['cart','Strategi Multi-Channel','Marketplace (Shopee, TikTok Shop), social commerce, live commerce, dan website dalam satu rencana yang konsisten.'],
+ ['chart','Performance Marketing','Setup, optimasi, dan pelaporan kampanye di Meta Ads, TikTok Ads, dan Shopee Ads dengan fokus ROAS.'],
+ ['team','Kepemimpinan Tim','Mengelola admin pemasaran, content creator, dan host live; menetapkan KPI dan memberi pelatihan.'],
+ ['chat','Influencer & Afiliasi','Sourcing KOL, briefing, manajemen kerja sama, dan desain program afiliasi.'],
+ ['star','Konten & Brand','Perencanaan konten, arahan kreatif, visual storytelling, dan konsep kampanye.'],
+ ['code','Web & SEO','Website dan blog WordPress, pengembangan landing page, dan SEO teknikal.']
+];
+$('#skills').innerHTML = SKILLS.map((s,i)=>`<article class="skill tilt rv" style="--d:${i*.07}s"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">${ICON[s[0]]}</svg></div><h3>${s[1]}</h3><p>${s[2]}</p></article>`).join('');
+$('#tools').innerHTML = ['WordPress','HTML · CSS · JavaScript','React JS','Adobe Photoshop','Illustrator','After Effects','Blender 3D','Editing video','Flutter','C# / Unity','Meta Ads','TikTok Ads','Shopee Ads','Analisis data'].map(t=>`<span>${t}</span>`).join('');
+$('#yr').textContent = new Date().getFullYear();
+$$('[data-wa]').forEach(a=>a.href=waLink());
+
+/* ---------- nav, scroll, reveal, counter ---------- */
+const nav=$('#nav'), bar=$('#progress');
+function onScroll(){ nav.classList.toggle('stuck',scrollY>30); const h=document.documentElement.scrollHeight-innerHeight; bar.style.transform=`scaleX(${h>0?scrollY/h:0})` }
+addEventListener('scroll',onScroll,{passive:true}); onScroll();
+$('#burger').onclick=e=>{ const o=$('#navlinks').classList.toggle('open'); e.currentTarget.setAttribute('aria-expanded',o) };
+$$('#navlinks a').forEach(a=>a.onclick=()=>$('#navlinks').classList.remove('open'));
+const io = new IntersectionObserver(es=>es.forEach(en=>{ if(en.isIntersecting){ en.target.classList.add('in'); io.unobserve(en.target); if(en.target.querySelector&&en.target.querySelector('[data-count]')) counters(en.target) } }),{threshold:.12,rootMargin:'0px 0px -6% 0px'});
+function observeReveals(){ $$('.rv:not(.in)').forEach(el=>io.observe(el)) }
+function counters(root){
+  $$('[data-count]',root).forEach(el=>{
+    const end=+el.dataset.count, suf=el.dataset.suffix||'', t0=performance.now(), dur=1400;
+    if(reduced){ el.textContent=end+suf; return }
+    (function tick(t){ const k=Math.min(1,(t-t0)/dur), e=1-Math.pow(1-k,3); el.textContent=Math.round(end*e)+suf; if(k<1) requestAnimationFrame(tick) })(t0);
+  });
+}
+
+/* ---------- foto profil dari Supabase ---------- */
+(function profilePhoto(){
+  const img=$('#photo'); let src=CONFIG.PROFILE_PHOTO;
+  if(!src && CONFIG.SUPABASE_URL) src=`${CONFIG.SUPABASE_URL}/storage/v1/object/public/${CONFIG.BUCKET}/profile.jpg`;
+  if(!src) return;
+  img.onload=()=>{img.style.display='block';$('.mono').style.display='none';const av=$('#ch-av');if(av){av.style.backgroundImage='url("'+src+'")';av.classList.add('ph')}}; img.onerror=()=>{img.style.display='none'}; img.src=src;
+})();
+
+/* ---------- hero 3D (Three.js) ---------- */
+function initHero(){
+  const box=$('#hero3d'), canvas=$('#hero-canvas');
+  if(!window.THREE) return;
+  let renderer; try{ renderer=new THREE.WebGLRenderer({canvas,antialias:true,alpha:true}) }catch(e){ return }
+  renderer.setPixelRatio(Math.min(devicePixelRatio,2));
+  const scene=new THREE.Scene(), cam=new THREE.PerspectiveCamera(42,1,.1,50); cam.position.set(0,0,7.2);
+  const group=new THREE.Group(); scene.add(group);
+
+  const geo=new THREE.IcosahedronGeometry(1.55,1), pos=geo.attributes.position, cols=[];
+  const c1=new THREE.Color('#1E4F9C'), c2=new THREE.Color('#5E9BEA'), c3=new THREE.Color('#FF9A62');
+  for(let i=0;i<pos.count;i++){ const t=(pos.getY(i)+1.55)/3.1, c=t<.62?c1.clone().lerp(c2,t/.62):c2.clone().lerp(c3,(t-.62)/.38); cols.push(c.r,c.g,c.b) }
+  geo.setAttribute('color',new THREE.Float32BufferAttribute(cols,3));
+  const core=new THREE.Mesh(geo,new THREE.MeshStandardMaterial({vertexColors:true,flatShading:true,roughness:.32,metalness:.35}));
+  group.add(core);
+  const wire=new THREE.LineSegments(new THREE.EdgesGeometry(new THREE.IcosahedronGeometry(1.95,1)),new THREE.LineBasicMaterial({color:0x7FB4F2,transparent:true,opacity:.28}));
+  group.add(wire);
+
+  const rings=[]; [[2.55,.014,0x7FB4F2,.55],[3.1,.01,0xFFC987,.4]].forEach(([r,t,c,o],i)=>{
+    const m=new THREE.Mesh(new THREE.TorusGeometry(r,t,8,200),new THREE.MeshBasicMaterial({color:c,transparent:true,opacity:o}));
+    m.rotation.x=Math.PI/2.4+i*.5; m.rotation.y=i*.7; group.add(m); rings.push(m);
+  });
+  const orbs=[0x3478D4,0xFF9A62,0x7FB4F2].map((c,i)=>{
+    const m=new THREE.Mesh(new THREE.SphereGeometry(.16-i*.025,24,24),new THREE.MeshStandardMaterial({color:c,emissive:c,emissiveIntensity:.5,roughness:.3}));
+    group.add(m); return m;
+  });
+  const N=420, pp=new Float32Array(N*3);
+  for(let i=0;i<N;i++){ const r=3.4+Math.random()*3.2, a=Math.random()*Math.PI*2, b=Math.acos(2*Math.random()-1); pp[i*3]=r*Math.sin(b)*Math.cos(a); pp[i*3+1]=r*Math.sin(b)*Math.sin(a)*.8; pp[i*3+2]=r*Math.cos(b)-1 }
+  const pg=new THREE.BufferGeometry(); pg.setAttribute('position',new THREE.BufferAttribute(pp,3));
+  const pts=new THREE.Points(pg,new THREE.PointsMaterial({size:.035,color:0x9CC4F5,transparent:true,opacity:.75,depthWrite:false})); scene.add(pts);
+
+  scene.add(new THREE.AmbientLight(0x7a97d1,.75));
+  const d=new THREE.DirectionalLight(0xffffff,1.15); d.position.set(3,4,5); scene.add(d);
+  const pl=new THREE.PointLight(0xff9a62,1.6,14); pl.position.set(-3.5,-2,3.5); scene.add(pl);
+
+  function size(){ const w=box.clientWidth,h=box.clientHeight; renderer.setSize(w,h,false); cam.aspect=w/h; cam.updateProjectionMatrix() }
+  new ResizeObserver(size).observe(box); size();
+  let mx=0,my=0,rx=0,ry=0,running=true;
+  addEventListener('pointermove',e=>{ mx=(e.clientX/innerWidth-.5)*2; my=(e.clientY/innerHeight-.5)*2 });
+  new IntersectionObserver(es=>{ running=es[0].isIntersecting; if(running) loop() }).observe(box);
+  const clock=new THREE.Clock();
+  function loop(){
+    if(!running) return; const t=clock.getElapsedTime();
+    core.rotation.y=t*.22; core.rotation.x=Math.sin(t*.35)*.18; wire.rotation.y=-t*.12; wire.rotation.z=t*.07;
+    rings[0].rotation.z=t*.18; rings[1].rotation.z=-t*.12;
+    orbs.forEach((o,i)=>{ const a=t*(.5+i*.2)+i*2.1, r=2.55+i*.28; o.position.set(Math.cos(a)*r,Math.sin(a*1.3)*1.1,Math.sin(a)*r*.6) });
+    pts.rotation.y=t*.02;
+    rx+=(my*.28-rx)*.05; ry+=(mx*.4-ry)*.05; group.rotation.x=rx; group.rotation.y=ry;
+    const s=1+Math.sin(t*.9)*.015; core.scale.setScalar(s);
+    group.position.y=Math.min(scrollY,600)*-.0016;
+    renderer.render(scene,cam);
+    if(!reduced) requestAnimationFrame(loop);
+  }
+  loop();
+}
+
+/* ---------- chat (gaya WhatsApp) ---------- */
+const WA_BTN = (label,href) => `<a class="act" href="${href}" target="_blank" rel="noopener"><svg aria-hidden="true"><use href="#i-wa"/></svg>${label}</a>`;
+const KB = [
+ {k:['siapa','tentang','kenalan','profil','dickya','perkenalan'], q:'Siapa Dickya?',
+  a:'<b>Dickya Hidayah Putra</b> adalah Manajer Pemasaran multi-channel &amp; performance marketing di Jakarta Selatan. Ia memegang strategi end-to-end di Shopee, TikTok Shop, dan media sosial, dengan fondasi teknis web, UI/UX, dan 3D.'},
+ {k:['pengalaman','kerja','karier','karir','jabatan','posisi','sekarang','confetti','ceratech'], q:'Pengalaman kerja',
+  a:'Perjalanan kerjanya:<ul><li><b>Marketing Manager</b>, Confettindo Berkah Abadi (Mei 2025 — sekarang)</li><li><b>Creative Manager</b>, Ceratech (Des 2024 — Apr 2025)</li><li><b>Marketing &amp; Communication Intern</b>, Anindhaloka (2024)</li><li><b>UI/UX &amp; Web Dev Intern</b>, Infinite Studios (2024)</li></ul><a class="act sec" href="#pengalaman" data-go>Lihat linimasa</a>'},
+ {k:['skill','keahlian','kemampuan','bisa apa','kompetensi','spesialis','jago'], q:'Keahlian utama',
+  a:'Keahlian utamanya: strategi multi-channel, performance marketing (Meta, TikTok, Shopee Ads), kepemimpinan tim, influencer &amp; afiliasi, konten &amp; brand, serta web &amp; SEO.<a class="act sec" href="#keahlian" data-go>Lihat keahlian</a>'},
+ {k:['project','proyek','karya','portofolio','portfolio','hasil','unggulan','contoh'], q:'Proyek unggulan',
+  a:'Beberapa yang sering dibahas: <b>Redesain confettibedsheet.id</b> (2026), <b>Landing Page Corporate B2B</b>, <b>CeraFest</b> (event multi-cabang), dan <b>Proyek Desain 3D Studio</b>.<a class="act sec" href="#karya" data-go>Buka indeks karya</a>'},
+ {k:['layanan','jasa','freelance','sewa','hire','klien','social media','sosmed','kolaborasi','kerja sama','kerjasama'], q:'Layanan & freelance',
+  a:'Lewat DHP CREATive, Dickya menerima proyek seperti pengelolaan media sosial (sudah dikerjakan untuk Gintin G Institute, Rosa De Padel, Lekooh, dan Dervel Dermatology), content plan, iklan berbayar, landing page, dan visual 3D.'+WA_BTN('Diskusi via WhatsApp',waLink('Halo Dickya, aku ingin diskusi soal layanan.'))},
+ {k:['tools','software','alat','teknologi','aplikasi','blender','wordpress','react'], q:'Tools yang dipakai',
+  a:'WordPress, HTML/CSS/JavaScript, React JS, Photoshop, Illustrator, After Effects, Blender (3D), editing video, Flutter, C#/Unity, serta Meta, TikTok, dan Shopee Ads untuk kampanye.'},
+ {k:['tim','pimpin','memimpin','team','leader','manajemen'], q:'Gaya memimpin tim',
+  a:'Dickya memimpin tim lintas fungsi: admin pemasaran, content creator, dan host live. Ia menetapkan KPI, memberi arahan, melatih, lalu mengevaluasi performa secara rutin.<a class="act sec" href="#carakerja" data-go>Lihat cara kerjanya</a>'},
+ {k:['pendidikan','kuliah','sekolah','lulus','kampus','universitas','politeknik','smk'], q:'Pendidikan',
+  a:'<b>Teknologi Rekayasa Multimedia</b>, Politeknik Negeri Batam (2021 — 2025) dan <b>Rekayasa Perangkat Lunak</b>, SMKN 4 Batam (2017 — 2020).'},
+ {k:['kontak','hubungi','wa','whatsapp','email','telepon','nomor','alamat','lokasi','domisili'], q:'Cara menghubungi',
+  a:'Berbasis di Jakarta Selatan (Ciganjur).<br>Email: <a href="mailto:'+CONFIG.EMAIL+'">'+CONFIG.EMAIL+'</a>'+WA_BTN('Chat via WhatsApp',waLink())}
+];
+const QUICK = ['Siapa Dickya?','Pengalaman kerja','Keahlian utama','Proyek unggulan','Layanan & freelance','Tools yang dipakai','Pendidikan','Cara menghubungi'];
+const chat=$('#chat'), fab=$('#chat-fab'), body=$('#ch-body'), teaser=$('#teaser');
+let chatStarted=false, busy=false;
+$('#ch-wa').href = waLink();
+const hhmm=()=>new Date().toLocaleTimeString('id-ID',{hour:'2-digit',minute:'2-digit'}).replace('.',':');
+function addMsg(html,who){
+  const last=body.lastElementChild, d=document.createElement('div');
+  d.className='msg '+who+((!last||!last.classList.contains(who))?' tail':'');
+  d.innerHTML=html+`<span class="meta"><time>${hhmm()}</time>${who==='me'?'<span class="tk">✓✓</span>':''}</span>`;
+  body.appendChild(d);
+  $$('[data-go]',d).forEach(a=>a.addEventListener('click',()=>{ if(innerWidth<760) toggleChat(false) }));
+  body.scrollTop=body.scrollHeight; return d;
+}
+function reply(html,delay){
+  busy=true; const t=document.createElement('div'); t.className='typing'; t.innerHTML='<i></i><i></i><i></i>'; body.appendChild(t); body.scrollTop=body.scrollHeight;
+  setTimeout(()=>{ t.remove(); addMsg(html,'bot'); busy=false },delay??(650+Math.random()*450));
+}
+function answer(q){
+  const s=q.toLowerCase(); let best=null,score=0;
+  KB.forEach(e=>{ let n=0; e.k.forEach(w=>{ if(s.includes(w)) n+=w.length }); if(s.trim()===e.q.toLowerCase()) n+=100; if(n>score){score=n;best=e} });
+  if(best) return best.a;
+  if(/^(hai|halo|hi|hello|pagi|siang|sore|malam)\b/.test(s)) return 'Halo! Pilih salah satu pertanyaan di bawah, atau ketik pertanyaanmu sendiri.';
+  if(/terima kasih|makasih|thanks/.test(s)) return 'Sama-sama! Kalau mau lanjut ngobrol langsung dengan Dickya, lewat WhatsApp ya.'+WA_BTN('Chat via WhatsApp',waLink());
+  return 'Pertanyaan ini belum ada di FAQ. Langsung tanyakan ke Dickya lewat WhatsApp, pertanyaanmu sudah aku siapkan di pesannya.'+WA_BTN('Tanya via WhatsApp',waLink('Halo Dickya, aku lihat portofoliomu dan ingin bertanya: '+q));
+}
+function ask(q){ if(busy||!q.trim()) return; const d=document.createElement('span'); d.textContent=q; addMsg(d.innerHTML,'me'); reply(answer(q)) }
+function toggleChat(force){
+  const open = force===undefined ? !chat.classList.contains('open') : force;
+  chat.classList.toggle('open',open); fab.classList.toggle('open',open); fab.classList.add('seen'); fab.setAttribute('aria-expanded',open); teaser.classList.remove('on');
+  if(open && !chatStarted){
+    chatStarted=true;
+    body.insertAdjacentHTML('beforeend','<div class="ch-day">Hari ini</div><div class="ch-note">Balasan di sini otomatis. Pertanyaan di luar FAQ akan diarahkan ke WhatsApp Dickya.</div>');
+    setTimeout(()=>addMsg('Halo, selamat datang di portofolio <b>Dickya Hidayah Putra</b>! 👋','bot'),350);
+    setTimeout(()=>reply('Aku bisa jawab seputar pengalaman, keahlian, proyek, dan cara bekerja sama. Pilih pertanyaan di bawah atau ketik sendiri.',900),1000);
+  }
+  if(open) setTimeout(()=>$('#ch-input').focus({preventScroll:true}),600);
+}
+$('#ch-q').innerHTML=QUICK.map(q=>`<button type="button">${q}</button>`).join('');
+$$('#ch-q button').forEach(b=>b.onclick=()=>ask(b.textContent));
+$('#ch-form').onsubmit=e=>{ e.preventDefault(); const i=$('#ch-input'); ask(i.value); i.value='' };
+fab.onclick=()=>toggleChat(); teaser.onclick=()=>toggleChat(true); $('#ch-back').onclick=()=>toggleChat(false);
+setTimeout(()=>{ if(!chatStarted) teaser.classList.add('on') },5000);
+setTimeout(()=>teaser.classList.remove('on'),15000);
+
+/* ---------- disiplin (panel yang membuka) ---------- */
+Object.assign(ICON,{
+  play:'<circle cx="12" cy="12" r="9"/><path d="M10 8.5l5 3.5-5 3.5z"/>',
+  cube:'<path d="M12 3l8 4.5v9L12 21l-8-4.5v-9z"/><path d="M12 12l8-4.5M12 12v9M12 12L4 7.5"/>',
+  target:'<circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5"/><circle cx="12" cy="12" r="1.2"/>',
+  pen:'<path d="M4 20l4-1 11-11-3-3L5 16z"/><path d="M14 6l3 3"/>',
+  bars:'<path d="M5 20v-6M12 20V6M19 20v-10"/>',
+  megaphone:'<path d="M4 10v4h3l7 4V6L7 10z"/><path d="M17 9a4 4 0 0 1 0 6"/>'
+});
+const svgi = k => `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${ICON[k]}</svg>`;
+const DISC = [
+ {n:'01',t:'Marketplace',ic:'cart',bg:'linear-gradient(160deg,#10285A,#1E4F9C)',glow:'#3478D4',d:'Shopee dan TikTok Shop dengan campaign bulanan, supaya funnel penjualan konsisten sepanjang tahun.',tags:['Shopee','TikTok Shop','Monthly campaign']},
+ {n:'02',t:'Performance Ads',ic:'chart',bg:'linear-gradient(160deg,#0F2F63,#3478D4)',glow:'#7FB4F2',d:'Meta, TikTok, dan Shopee Ads. Audiens, kreatif, dan bidding terus disempurnakan demi ROAS.',tags:['Meta Ads','TikTok Ads','Shopee Ads']},
+ {n:'03',t:'Live Commerce',ic:'play',bg:'linear-gradient(160deg,#1B2B5C,#B4573C)',glow:'#FF8A5C',d:'Jadwal, rundown, dan analitik sesi TikTok Live dan Shopee Live bersama tim host.',tags:['TikTok Live','Shopee Live','Rundown']},
+ {n:'04',t:'Social Media',ic:'chat',bg:'linear-gradient(160deg,#14305F,#4C86D8)',glow:'#7FB4F2',d:'Content plan berbasis funnel untuk Confetti dan klien freelance di berbagai industri.',tags:['Content plan','TOFU · MOFU · BOFU','KOL']},
+ {n:'05',t:'Web & SEO',ic:'code',bg:'linear-gradient(160deg,#0E2A5E,#2A68BE)',glow:'#3478D4',d:'WordPress, landing page, dan blog SEO yang dibangun sendiri tanpa menunggu pihak luar.',tags:['WordPress','React JS','SEO']},
+ {n:'06',t:'Visual 3D',ic:'cube',bg:'linear-gradient(160deg,#12295C,#3A78D0)',glow:'#7FB4F2',d:'Blender, animasi, dan konten AI untuk branding sosial, korporat, dan materi iklan.',tags:['Blender','Animasi 3D','Konten AI']}
+];
+$('#disc').innerHTML = DISC.map((x,i)=>`<button class="dp${i===0?' on':''}" style="--bg:${x.bg};--glow:${x.glow}" aria-expanded="${i===0}"><span class="blob"></span><span class="dp-ic">${svgi(x.ic)}</span><span class="dp-vert">${x.t}</span><span class="dp-open"><h3>${x.t}</h3><p>${x.d}</p><span class="tags">${x.tags.map(g=>`<span>${g}</span>`).join('')}</span></span><span class="dp-no">${x.n}</span></button>`).join('');
+function setDisc(i){ $$('.dp').forEach((b,k)=>{ b.classList.toggle('on',k===i); b.setAttribute('aria-expanded',k===i) }) }
+$$('.dp').forEach((b,i)=>{ b.onclick=()=>setDisc(i); b.onpointerenter=e=>{ if(e.pointerType==='mouse') setDisc(i) } });
+
+/* ---------- diagram alur kerja ---------- */
+const FLOW = [
+ {t:'Strategi',s:'Arah & target',ic:'target',h:'Riset dan strategi end-to-end',p:'Tujuan brand diterjemahkan menjadi rencana multi-channel: kanal apa yang dipakai, kapan, dan apa ukuran berhasilnya.',tags:['Multi-channel','Monthly campaign','KPI']},
+ {t:'Konten',s:'Funnel & kreatif',ic:'pen',h:'Konten berbasis funnel',p:'Content plan disusun per tahap TOFU, MOFU, dan BOFU. Materi dibuat bersama tim kreator, visual 3D, dan konten AI agar pesannya pas di tiap tahap.',tags:['TOFU · MOFU · BOFU','Konten AI','Blender 3D']},
+ {t:'Iklan & Kanal',s:'Meta, TikTok, Shopee',ic:'megaphone',h:'Distribusi lewat iklan dan marketplace',p:'Kampanye berbayar di Meta, TikTok, dan Shopee Ads berjalan bersama marketplace, live commerce, dan program KOL atau afiliasi.',tags:['Meta Ads','TikTok Ads','Shopee Ads','KOL']},
+ {t:'Tim',s:'Admin, kreator, host',ic:'team',h:'Eksekusi bersama tim',p:'Admin pemasaran, content creator, dan host live bekerja dengan KPI yang jelas, jadwal live, rundown, dan evaluasi rutin.',tags:['KPI','Rundown live','Evaluasi']},
+ {t:'Laporan',s:'Ukur & optimasi',ic:'bars',h:'Laporan dan optimasi',p:'Performa dilaporkan tiap bulan ke manajemen beserta rekomendasi, lalu audiens, kreatif, dan bidding disempurnakan untuk ROAS yang lebih baik.',tags:['Laporan bulanan','ROAS','Rekomendasi']}
+];
+let fi=0, ft=null;
+$('#flow-steps').innerHTML = FLOW.map((s,i)=>`<li><button class="fs" aria-label="Tahap ${i+1}: ${s.t}"><span class="nd">${svgi(s.ic)}</span><span class="tx"><b>${s.t}</b><small>${s.s}</small></span></button></li>`).join('');
+function setFlow(i){
+  fi=i; const s=FLOW[i];
+  $$('#flow-steps li').forEach((li,k)=>{ li.classList.toggle('active',k===i); li.classList.toggle('done',k<i) });
+  $('#flow-detail').innerHTML=`<div class="fd-n">${String(i+1).padStart(2,'0')}</div><div class="fd-body"><h3>${s.h}</h3><p>${s.p}</p><div class="tags">${s.tags.map(g=>`<span>${g}</span>`).join('')}</div></div>${reduced?'':'<i class="fd-bar"></i>'}`;
+}
+function playFlow(){ clearInterval(ft); if(!reduced) ft=setInterval(()=>setFlow((fi+1)%FLOW.length),5500) }
+$$('#flow-steps li').forEach((li,i)=>li.querySelector('button').onclick=()=>{ setFlow(i); playFlow() });
+setFlow(0);
+new IntersectionObserver(es=>{ if(es[0].isIntersecting){ setFlow(fi); playFlow() } else clearInterval(ft) },{threshold:.3}).observe($('#flow'));
+
+/* funnel: sorot dua arah */
+$$('.fn-l,.fn-c').forEach(el=>{
+  const on=()=>$$('[data-k="'+el.dataset.k+'"]').forEach(x=>x.classList.add('hl')), off=()=>$$('.hl').forEach(x=>x.classList.remove('hl'));
+  el.addEventListener('pointerenter',on); el.addEventListener('pointerleave',off);
+});
+
+/* ---------- start ---------- */
+(async function init(){
+  initHero();
+  PROJECTS = await loadProjects();
+  renderChips(); renderWork(); bindTilt(); bindCursorTargets(); observeReveals();
+})();
+</script>
 </body>
 </html>
